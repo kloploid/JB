@@ -39,7 +39,7 @@ export default function RootLayout({
         {children}
         <Script
           src="https://assets.calendly.com/assets/external/widget.js"
-          strategy="lazyOnload"
+          strategy="afterInteractive"
         />
       </body>
     </html>

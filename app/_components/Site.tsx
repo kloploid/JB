@@ -54,26 +54,8 @@ function openCalendly(url: string) {
 
 function CalendlyInline({ url }: { url: string }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          obs.disconnect();
-        }
-      },
-      { rootMargin: "200px" },
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (!visible) return;
     const el = ref.current;
     if (!el) return;
     let cancelled = false;
@@ -96,7 +78,7 @@ function CalendlyInline({ url }: { url: string }) {
       cancelled = true;
       clearInterval(interval);
     };
-  }, [visible, url]);
+  }, [url]);
 
   return (
     <div
