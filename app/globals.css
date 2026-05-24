@@ -1,0 +1,47 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+:root {
+  --background: #fcfaf6;
+  --background-soft: #f6f2e9;
+  --surface: #ffffff;
+  --ink: #2a2724;
+  --ink-muted: #87827a;
+  --sage: #b6c7b3;
+  --sage-deep: #6e8c71;
+  --sand: #ece5d6;
+  --sand-deep: #ddd1b9;
+  --blush: #f3e4d8;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-background-soft: var(--background-soft);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-sage: var(--sage);
+  --color-sage-deep: var(--sage-deep);
+  --color-sand: var(--sand);
+  --color-sand-deep: var(--sand-deep);
+  --color-blush: var(--blush);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-cormorant), ui-serif, Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--ink);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--sage);
+  color: #fff;
+}
