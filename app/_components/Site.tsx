@@ -371,8 +371,20 @@ function parsePriceTiers(s: string): PriceTier[] | null {
   return tiers.length ? tiers : null;
 }
 
+const PAGE_TITLES: Record<Lang, string> = {
+  et: "SomaSensus — Yana Belova · Massaaž Tallinnas",
+  ru: "SomaSensus — Яна Белова · Массаж в Таллинне",
+  en: "SomaSensus — Yana Belova · Massage in Tallinn",
+};
+
+const PAGE_DESCRIPTIONS: Record<Lang, string> = {
+  et: "Teraapiline massaaž Tallinnas — vabasta pinge, taasta liikuvus. Pelgulinna Tervisemaja ja Lasnamäe. Esimene visiit −10%.",
+  ru: "Терапевтический массаж в Таллинне — снимаем напряжение, возвращаем подвижность. Pelgulinna Tervisemaja и Lasnamäe. Первый визит −10%.",
+  en: "Therapeutic massage in Tallinn — release tension, restore mobility. Pelgulinna Tervisemaja & Lasnamäe. First visit −10%.",
+};
+
 export default function Site() {
-  const [lang, setLang] = useState<Lang>("ru");
+  const [lang, setLang] = useState<Lang>("et");
 
   useEffect(() => {
     try {
@@ -383,6 +395,11 @@ export default function Site() {
 
   useEffect(() => {
     document.documentElement.lang = lang;
+    document.title = PAGE_TITLES[lang];
+    const metaDesc = document.querySelector<HTMLMetaElement>(
+      'meta[name="description"]',
+    );
+    if (metaDesc) metaDesc.content = PAGE_DESCRIPTIONS[lang];
     try {
       localStorage.setItem("lang", lang);
     } catch {}
