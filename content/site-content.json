@@ -36,13 +36,13 @@
             "name": "Pelgulinna Tervisemaja",
             "schedule": "(Mon-Fri, 17:30 - 20:00)",
             "subtitle": "MEDICAL MASSAGE ROOM",
-            "address": "Pelgulinna Tervisemaja, Adala 1, Pro Melauks Clinic OU"
+            "address": "Ädala 1, Pelgulinna"
           },
           {
-            "name": "Linnamae 37a",
+            "name": "Linnamäe 37a",
             "schedule": "(Sat, 10:00 - 17:00)",
             "subtitle": "SPECIALIZED MASSAGE CENTER ROOM",
-            "address": "Linnamae 37a, Lasnamae"
+            "address": "Linnamäe 37a, Lasnamäe"
           }
         ],
         "infoTitle": "Detailed Information",
@@ -193,16 +193,40 @@
         "title": "TESTIMONIALS",
         "reviews": [
           {
-            "text": "Yana is a true professional! After a few sessions, the back pain that bothered me for years is gone.",
-            "author": "Anna S."
+            "text": "Feels like magic — the pain is gone. I keep looking for it, but it's not coming back. And good riddance to it.",
+            "author": "Anonymous client"
           },
           {
-            "text": "Amazing sports massage. My muscles recover much faster, which is crucial for my competition prep.",
-            "author": "Max V."
+            "text": "After every massage I feel better.",
+            "author": "Anonymous client"
           },
           {
-            "text": "The perfect place for relaxation. I come here to rest not only my body but my soul. Magic hands!",
-            "author": "Elena K."
+            "text": "Massage solved my neck pain problem =)",
+            "author": "Anonymous client"
+          },
+          {
+            "text": "I got a complete, clear answer to what had been troubling me. After the massage I felt so light!",
+            "author": "Anonymous client"
+          },
+          {
+            "text": "Such a light feeling — after this you could head straight to a spa.",
+            "author": "Anonymous client"
+          },
+          {
+            "text": "My neck stopped hurting. After the session — relaxation and sleepiness.",
+            "author": "Anonymous client"
+          },
+          {
+            "text": "Yes — my knee hurts less now.",
+            "author": "Anonymous client"
+          },
+          {
+            "text": "Today I don't feel any pain — I even played padel on Sunday.",
+            "author": "Anonymous client"
+          },
+          {
+            "text": "After the session — a feeling of relaxation and a kind of lightness.",
+            "author": "Anonymous client"
           }
         ]
       },
@@ -262,13 +286,13 @@
             "name": "Pelgulinna Tervisemaja",
             "schedule": "(Пн-Пт, 17:30 - 20:00)",
             "subtitle": "МЕДИЦИНСКИЙ МАССАЖНЫЙ КАБИНЕТ",
-            "address": "Pelgulinna Tervisemaja, Adala 1, Kliinikus Pro Melauks OU"
+            "address": "Ädala 1, Pelgulinna"
           },
           {
-            "name": "Linnamae 37a",
+            "name": "Linnamäe 37a",
             "schedule": "(Сб, 10:00 - 17:00)",
             "subtitle": "СПЕЦИАЛИЗИРОВАННЫЙ КАБИНЕТ МАССАЖНОГО ЦЕНТРА",
-            "address": "Linnamae 37a, Lasnamae"
+            "address": "Linnamäe 37a, Lasnamäe"
           }
         ],
         "infoTitle": "Подробная информация",
@@ -419,16 +443,40 @@
         "title": "ОТЗЫВЫ",
         "reviews": [
           {
-            "text": "Яна — настоящий профессионал! После курса массажа ушли боли в спине, которые мучили меня годами.",
-            "author": "Анна С."
+            "text": "Как магия — боль ушла. Всё ловлю её, а её нет. И слава богу.",
+            "author": "Анонимный клиент"
           },
           {
-            "text": "Потрясающий спортивный массаж. Мышцы восстанавливаются в разы быстрее, что очень важно.",
-            "author": "Максим В."
+            "text": "После каждого массажа становится лучше.",
+            "author": "Анонимный клиент"
           },
           {
-            "text": "Идеальное место для релаксации. Прихожу сюда отдохнуть не только телом, но и душой. Волшебные руки!",
-            "author": "Елена К."
+            "text": "Массаж решил проблему с болью в шее =)",
+            "author": "Анонимный клиент"
+          },
+          {
+            "text": "Получил полное и чёткое подтверждение того, что меня беспокоило. После массажа чувствовал себя легко!",
+            "author": "Анонимный клиент"
+          },
+          {
+            "text": "Очень лёгкое состояние, после такого можно и в спа.",
+            "author": "Анонимный клиент"
+          },
+          {
+            "text": "Перестала болеть шея. После сеанса — расслабленность и сонливость.",
+            "author": "Анонимный клиент"
+          },
+          {
+            "text": "Да, колено стало меньше болеть.",
+            "author": "Анонимный клиент"
+          },
+          {
+            "text": "Сегодня боли нет вообще — в воскресенье даже сыграл в падел.",
+            "author": "Анонимный клиент"
+          },
+          {
+            "text": "После сеанса чувствуется расслабление и какая-то лёгкость.",
+            "author": "Анонимный клиент"
           }
         ]
       },
@@ -488,13 +536,13 @@
             "name": "Pelgulinna Tervisemaja",
             "schedule": "(E-R, 17:30 - 20:00)",
             "subtitle": "MEDITSIINILINE MASSAAŽIKABINET",
-            "address": "Pelgulinna Tervisemaja, Adala 1, kliinikus Pro Melauks OU"
+            "address": "Ädala 1, Pelgulinna"
           },
           {
-            "name": "Linnamae 37a",
+            "name": "Linnamäe 37a",
             "schedule": "(L, 10:00 - 17:00)",
             "subtitle": "SPETSIALISEERITUD MASSAAŽIKESKUSE KABINET",
-            "address": "Linnamae 37a, Lasnamae"
+            "address": "Linnamäe 37a, Lasnamäe"
           }
         ],
         "infoTitle": "Täpsem info",
@@ -645,16 +693,40 @@
         "title": "TAGASISIDE",
         "reviews": [
           {
-            "text": "Yana on tõeline professionaal! Pärast seansse on aastatepikkune seljavalu kadunud.",
-            "author": "Anna S."
+            "text": "Tundub nagu maagia — valu on kadunud. Otsin seda kogu aeg, aga see ei tule tagasi. Ja jumal tänatud.",
+            "author": "Anonüümne klient"
           },
           {
-            "text": "Hämmastav spordimassaaž. Lihased taastuvad palju kiiremini.",
-            "author": "Max V."
+            "text": "Pärast iga massaaži tunnen end paremini.",
+            "author": "Anonüümne klient"
           },
           {
-            "text": "Ideaalne koht lõõgastumiseks. Tulen siia puhkama nii keha kui vaimuga.",
-            "author": "Elena K."
+            "text": "Massaaž lahendas mu kaelavalu probleemi =)",
+            "author": "Anonüümne klient"
+          },
+          {
+            "text": "Sain selge ja täieliku vastuse sellele, mis mind häiris. Pärast massaaži tundsin end nii kerge ja vabana!",
+            "author": "Anonüümne klient"
+          },
+          {
+            "text": "Väga kerge tunne — pärast seda võiks julgelt spaasse minna.",
+            "author": "Anonüümne klient"
+          },
+          {
+            "text": "Kaelavalu kadus. Pärast seanssi — lõõgastus ja unisus.",
+            "author": "Anonüümne klient"
+          },
+          {
+            "text": "Jah, põlv valutab nüüd vähem.",
+            "author": "Anonüümne klient"
+          },
+          {
+            "text": "Täna pole üldse valu — pühapäeval mängisin isegi padelit.",
+            "author": "Anonüümne klient"
+          },
+          {
+            "text": "Pärast seanssi tunnen lõõgastust ja mingit kergust.",
+            "author": "Anonüümne klient"
           }
         ]
       },
@@ -688,7 +760,7 @@
     "booking_calendly": "https://calendly.com/yanabelova-massages/massage-physiotherapy-session",
     "maps": {
       "pelgulinna": "https://maps.google.com/?q=Pelgulinna%20Tervisemaja%2C%20Tallinn",
-      "linnamae37a": "https://maps.google.com/?q=Linnamae%2037a%2C%20Tallinn"
+      "linnamae37a": "https://maps.google.com/?q=Linnam%C3%A4e+37a%2C+Lasnam%C3%A4e%2C+Tallinn"
     },
     "service_images": {
       "1": "/service1.jpg",

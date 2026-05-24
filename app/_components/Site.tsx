@@ -173,7 +173,7 @@ const SALES: Record<Lang, Copy> = {
       },
       {
         title: "Pay how you want",
-        text: "Stebby benefit, card or cash. No friction, no surprises — and a 10% discount on your very first visit.",
+        text: "Pay with Stebby, cash, or by invoice sent to your email. Plus a 10% discount on your very first visit.",
       },
     ],
     servicesEyebrow: "Treatments",
@@ -185,7 +185,7 @@ const SALES: Record<Lang, Copy> = {
     reviewsEyebrow: "Words from clients",
     reviewsTitle: "What people say after a session",
     pricingEyebrow: "Pricing",
-    pricingTitle: "Honest, simple prices",
+    pricingTitle: "Session pricing",
     pricingNote:
       "Cancellation under 12h — 50% of the fee. First visit always −10%.",
     pricingWidgetTitle: "Pick a time that fits",
@@ -243,7 +243,7 @@ const SALES: Record<Lang, Copy> = {
       },
       {
         title: "Удобная оплата",
-        text: "Stebby, карта или наличные — без сюрпризов. На первый визит — скидка 10%.",
+        text: "Stebby, наличными или счётом на email. На первый визит — скидка 10%.",
       },
     ],
     servicesEyebrow: "Процедуры",
@@ -255,7 +255,7 @@ const SALES: Record<Lang, Copy> = {
     reviewsEyebrow: "Отзывы",
     reviewsTitle: "Что говорят клиенты после сеанса",
     pricingEyebrow: "Цены",
-    pricingTitle: "Честно и без сюрпризов",
+    pricingTitle: "Стоимость сеансов",
     pricingNote:
       "Отмена менее чем за 12 часов — 50% от стоимости. На первый визит всегда −10%.",
     pricingWidgetTitle: "Выберите удобное время",
@@ -313,7 +313,7 @@ const SALES: Record<Lang, Copy> = {
       },
       {
         title: "Mugavad maksevõimalused",
-        text: "Stebby, kaart või sularaha — ilma üllatusteta. Esimesel visiidil −10%.",
+        text: "Stebby, sularaha või arve e-postiga. Esimesel visiidil −10%.",
       },
     ],
     servicesEyebrow: "Teenused",
@@ -325,7 +325,7 @@ const SALES: Record<Lang, Copy> = {
     reviewsEyebrow: "Kliendid räägivad",
     reviewsTitle: "Mida öeldakse pärast seanssi",
     pricingEyebrow: "Hinnad",
-    pricingTitle: "Aus ja lihtne hinnakiri",
+    pricingTitle: "Seansside hinnad",
     pricingNote:
       "Tühistamine alla 12h — 50% tasust. Esimene visiit alati −10%.",
     pricingWidgetTitle: "Vali sobiv aeg",
@@ -756,6 +756,16 @@ function Services({
 }
 
 function Reviews({ t, s }: { t: SiteContent; s: Copy }) {
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  const scrollByCard = (dir: 1 | -1) => {
+    const el = trackRef.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>("[data-review-card]");
+    const cardW = card?.offsetWidth ?? 0;
+    el.scrollBy({ left: (cardW + 24) * dir, behavior: "smooth" });
+  };
+
   return (
     <section className="py-24 lg:py-32">
       <div className="mx-auto max-w-6xl px-6 lg:px-10">
@@ -768,30 +778,59 @@ function Reviews({ t, s }: { t: SiteContent; s: Copy }) {
               {s.reviewsTitle}
             </h2>
           </div>
-          <Stars />
+          <div className="flex items-center gap-5">
+            <Stars />
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={() => scrollByCard(-1)}
+                aria-label="Previous review"
+                className="inline-flex size-11 items-center justify-center rounded-full border border-sand bg-surface text-ink transition hover:border-sage-deep hover:text-sage-deep hover:shadow-sm"
+              >
+                <ArrowIcon dir="left" />
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollByCard(1)}
+                aria-label="Next review"
+                className="inline-flex size-11 items-center justify-center rounded-full border border-sand bg-surface text-ink transition hover:border-sage-deep hover:text-sage-deep hover:shadow-sm"
+              >
+                <ArrowIcon dir="right" />
+              </button>
+            </div>
+          </div>
         </div>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {t.feedback.reviews.map((r) => (
-            <figure
-              key={r.author}
-              className="flex h-full flex-col justify-between rounded-3xl border border-sand bg-surface p-7"
-            >
-              <div className="flex gap-0.5 text-sage-deep">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <StarIcon key={i} />
-                ))}
-              </div>
-              <blockquote className="mt-5 font-serif text-lg font-light italic leading-relaxed text-ink">
-                “{r.text}”
-              </blockquote>
-              <figcaption className="mt-6 flex items-center gap-3 text-sm text-ink-muted">
-                <span className="inline-flex size-9 items-center justify-center rounded-full bg-sand-deep/40 text-xs font-semibold text-ink">
-                  {initials(r.author)}
-                </span>
-                {r.author}
-              </figcaption>
-            </figure>
-          ))}
+
+        <div
+          ref={trackRef}
+          className="review-track mt-12 snap-x snap-mandatory overflow-x-auto scroll-smooth pb-4"
+        >
+          <ul className="flex gap-6">
+            {t.feedback.reviews.map((r, i) => (
+              <li
+                key={i}
+                data-review-card
+                className="flex shrink-0 snap-start basis-full sm:basis-[calc((100%-1.5rem)/2)] lg:basis-[calc((100%-3rem)/3)]"
+              >
+                <figure className="flex h-full w-full flex-col justify-between rounded-3xl border border-sand bg-surface p-7 transition duration-300 hover:-translate-y-0.5 hover:border-sage/70 hover:shadow-[0_18px_40px_-30px_rgba(31,29,26,0.25)]">
+                  <div className="flex gap-0.5 text-sage-deep">
+                    {Array.from({ length: 5 }).map((_, idx) => (
+                      <StarIcon key={idx} />
+                    ))}
+                  </div>
+                  <blockquote className="mt-5 font-serif text-lg font-light italic leading-relaxed text-ink">
+                    “{r.text}”
+                  </blockquote>
+                  <figcaption className="mt-6 flex items-center gap-3 text-sm text-ink-muted">
+                    <span className="inline-flex size-9 items-center justify-center rounded-full bg-sage/30 text-sage-deep">
+                      <HeartIcon />
+                    </span>
+                    {r.author}
+                  </figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>
@@ -941,13 +980,13 @@ const LOCATION_GEO: { lat: number; lng: number; pageUrl: string }[] = [
     lat: 59.4448,
     lng: 24.6967,
     pageUrl:
-      "https://www.google.com/maps/place/Pelgulinna+Tervisemaja/@59.4445,24.6993,17z",
+      "https://www.google.com/maps/place/Pelgulinna+Tervisemaja,+%C3%84dala+1,+Tallinn",
   },
   {
     lat: 59.4486,
     lng: 24.8456,
     pageUrl:
-      "https://www.google.com/maps/place/Linnam%C3%A4e+tee+37a,+Tallinn",
+      "https://www.google.com/maps/place/Linnam%C3%A4e+37a,+Lasnam%C3%A4e,+Tallinn",
   },
 ];
 
@@ -1139,10 +1178,26 @@ function StarIcon() {
   );
 }
 
-function initials(name: string) {
-  const parts = name.replace(/\.$/, "").trim().split(/\s+/);
-  return parts
-    .slice(0, 2)
-    .map((p) => p[0]?.toUpperCase() ?? "")
-    .join("");
+function HeartIcon() {
+  return (
+    <svg viewBox="0 0 20 20" className="size-4 fill-current" aria-hidden>
+      <path d="M10 17.5s-6.5-4-6.5-8.5C3.5 6.4 5.5 4.5 8 4.5c1 0 1.8.4 2 1c.2-.6 1-1 2-1c2.5 0 4.5 1.9 4.5 4.5C16.5 13.5 10 17.5 10 17.5z" />
+    </svg>
+  );
+}
+
+function ArrowIcon({ dir }: { dir: "left" | "right" }) {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      className={`size-4 stroke-current ${dir === "left" ? "rotate-180" : ""}`}
+      fill="none"
+      strokeWidth={1.6}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <path d="M4 10h12M11 5l5 5-5 5" />
+    </svg>
+  );
 }
