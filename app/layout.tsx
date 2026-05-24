@@ -20,7 +20,6 @@ export const metadata: Metadata = {
   title: "SomaSensus — Yana Belova · Tallinn",
   description:
     "Balance. Recovery. Awareness. Massage therapy and bodywork by Yana Belova in Tallinn, Estonia.",
-  icons: { icon: "/favicon.svg" },
 };
 
 export default function RootLayout({
@@ -30,16 +29,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${cormorant.variable} antialiased`}>
-      <body className="min-h-dvh bg-background text-ink">
+      <head>
         <link
           rel="stylesheet"
           href="https://assets.calendly.com/assets/external/widget.css"
-          precedence="default"
         />
+      </head>
+      <body className="min-h-dvh bg-background text-ink">
         {children}
         <Script
           src="https://assets.calendly.com/assets/external/widget.js"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
       </body>
     </html>

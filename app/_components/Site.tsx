@@ -54,8 +54,26 @@ function openCalendly(url: string) {
 
 function CalendlyInline({ url }: { url: string }) {
   const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          obs.disconnect();
+        }
+      },
+      { rootMargin: "200px" },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!visible) return;
     const el = ref.current;
     if (!el) return;
     let cancelled = false;
@@ -78,9 +96,15 @@ function CalendlyInline({ url }: { url: string }) {
       cancelled = true;
       clearInterval(interval);
     };
-  }, [url]);
+  }, [visible, url]);
 
-  return <div ref={ref} style={{ minWidth: "300px", height: "680px" }} />;
+  return (
+    <div
+      ref={ref}
+      style={{ minWidth: "300px", height: "680px" }}
+      className="bg-background-soft"
+    />
+  );
 }
 
 type Copy = {
@@ -426,14 +450,14 @@ function Nav({
 }) {
   return (
     <header className="sticky top-0 z-50 border-b border-sand/60 bg-background/85 backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3 lg:px-10">
-        <a href="#top" className="flex items-center gap-2.5 font-serif text-lg tracking-wide text-ink">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 lg:px-10">
+        <a href="#top" className="flex items-center gap-3 font-serif text-2xl tracking-wide text-ink">
           <Image
             src="/logo.png"
             alt=""
-            width={36}
-            height={36}
-            className="size-8 rounded-md object-contain"
+            width={48}
+            height={48}
+            className="size-11 rounded-md object-contain"
             priority
           />
           <span className="hidden sm:inline">
@@ -473,18 +497,19 @@ function Hero({ s, popupUrl }: { s: Copy; popupUrl: string }) {
   return (
     <section id="top" className="relative overflow-hidden">
       <video
-        className="pointer-events-none absolute inset-0 -z-20 h-full w-full object-cover opacity-15"
+        className="pointer-events-none absolute inset-0 -z-20 h-full w-full object-cover opacity-40"
         autoPlay
         muted
         loop
         playsInline
+        preload="auto"
         aria-hidden
       >
         <source src="/video-bg.mp4" type="video/mp4" />
       </video>
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-background/70 via-background/85 to-background"
+        className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-background/40 via-background/55 to-background"
       />
       <div
         aria-hidden
@@ -607,7 +632,7 @@ function Outcomes({ s }: { s: Copy }) {
                   />
                 </div>
                 <div className="mt-4 flex items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-sage-deep">
-                  <span className="inline-flex size-5 items-center justify-center rounded-full bg-sage/40 text-[10px] font-semibold">
+                  <span className="inline-flex size-5 items-center justify-center rounded-full bg-sage/40 text-[10px] font-semibold tracking-normal">
                     {i + 1}
                   </span>
                   {s.outcomesEyebrow}
@@ -1068,15 +1093,15 @@ function Footer() {
   return (
     <footer className="border-t border-sand bg-background py-10">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 text-sm text-ink-muted md:flex-row lg:px-10">
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-3">
           <Image
             src="/logo.png"
             alt=""
-            width={28}
-            height={28}
-            className="size-7 rounded-md object-contain"
+            width={44}
+            height={44}
+            className="size-10 rounded-md object-contain"
           />
-          <p className="font-serif text-base text-ink">
+          <p className="font-serif text-xl text-ink">
             soma<span className="font-medium">sensus</span>
           </p>
         </div>
