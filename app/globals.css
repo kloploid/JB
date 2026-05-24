@@ -54,6 +54,21 @@ body {
   display: none;
 }
 
+/* Suppress Calendly's body-level 3-dot loading spinner that can flash or
+   linger on the page after the inline widget has initialized. The popup
+   overlay itself is left alone so initPopupWidget can show it normally. */
+.calendly-spinner,
+.calendly-spinner * {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  z-index: -1 !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+
 .review-track {
   scrollbar-width: thin;
   scrollbar-color: var(--sage-deep) var(--sand);
