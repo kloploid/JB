@@ -30,13 +30,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${cormorant.variable} antialiased`}>
-      <head>
+      <body className="min-h-dvh bg-background text-ink">
         <link
           rel="stylesheet"
           href="https://assets.calendly.com/assets/external/widget.css"
+          precedence="default"
         />
-      </head>
-      <body className="min-h-dvh bg-background text-ink">
         {children}
         <Script
           src="https://assets.calendly.com/assets/external/widget.js"
