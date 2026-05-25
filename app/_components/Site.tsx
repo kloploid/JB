@@ -352,6 +352,10 @@ const OUTCOME_IMG = [
   "/service5.jpg",
 ];
 
+const OUTCOME_IMG_POSITION: Record<number, string> = {
+  3: "center 20%",
+};
+
 function lowestPrice(price: string): number | null {
   const matches = price.match(/(\d+)\s*€/g);
   if (!matches) return null;
@@ -630,6 +634,7 @@ function Outcomes({ s }: { s: Copy }) {
                     alt=""
                     fill
                     sizes="(min-width: 640px) 260px, 90vw"
+                    style={{ objectPosition: OUTCOME_IMG_POSITION[i] ?? "center" }}
                     className="object-cover"
                   />
                 </div>
@@ -1148,8 +1153,8 @@ function FinalCta({ s, popupUrl }: { s: Copy; popupUrl: string }) {
 
 function Footer() {
   return (
-    <footer className="border-t border-sand bg-background py-10">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 text-sm text-ink-muted md:flex-row lg:px-10">
+    <footer className="border-t border-sand bg-background">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-10 text-sm text-ink-muted md:flex-row lg:px-10">
         <div className="flex items-center gap-3">
           <Image
             src="/logo.png"
@@ -1186,7 +1191,21 @@ function Footer() {
             Facebook
           </a>
         </div>
-        <p>© {new Date().getFullYear()} Yana Belova · Tallinn</p>
+      </div>
+
+      <div className="border-t border-sand/60">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-6 py-4 text-[12px] text-ink-muted sm:flex-row lg:px-10">
+          <p>© {new Date().getFullYear()} Yana Belova · Tallinn</p>
+          <p className="flex items-center gap-1.5">
+            <span>Made by</span>
+            <span className="font-medium tracking-wide text-ink">
+              PEP Agency
+            </span>
+            <span className="text-sage-deep" aria-hidden>
+              <HeartIcon />
+            </span>
+          </p>
+        </div>
       </div>
     </footer>
   );
