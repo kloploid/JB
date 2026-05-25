@@ -23,4 +23,5 @@ export const SERVICE_IMG: Record<number, string> = {
 
 export const SERVICE_IMG_POSITION: Record<number, string> = {
   4: "center 85%",
+  6: "center 20%",
 };
