@@ -349,7 +349,7 @@ const OUTCOME_IMG = [
   "/service2.jpg",
   "/service3.jpg",
   "/service4.jpg",
-  "/service5.jpg",
+  "/service5.png",
 ];
 
 const OUTCOME_IMG_POSITION: Record<number, string> = {
