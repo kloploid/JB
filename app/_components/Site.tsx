@@ -562,6 +562,8 @@ function Hero({ s, popupUrl }: { s: Copy; popupUrl: string }) {
               sizes="(min-width: 1024px) 460px, 80vw"
               className="object-cover"
               priority
+              fetchPriority="high"
+              loading="eager"
             />
           </div>
           <div className="absolute -left-5 bottom-8 hidden rounded-2xl border border-sand bg-surface/95 px-4 py-3 shadow-sm backdrop-blur md:block">

@@ -14,7 +14,6 @@ const cormorant = Cormorant_Garamond({
   subsets: ["latin", "latin-ext", "cyrillic"],
   weight: ["300", "400", "500"],
   display: "swap",
-  preload: false,
 });
 
 const siteUrl =
@@ -150,6 +149,10 @@ export default function RootLayout({
   return (
     <html lang="et" className={`${inter.variable} ${cormorant.variable} antialiased`}>
       <head>
+        <link rel="preconnect" href="https://assets.calendly.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://calendly.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="https://basemaps.cartocdn.com" />
+        <link rel="dns-prefetch" href="https://www.google.com" />
         <link
           rel="stylesheet"
           href="https://assets.calendly.com/assets/external/widget.css"
