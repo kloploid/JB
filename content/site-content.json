@@ -15,18 +15,23 @@
       },
       "aboutYana": {
         "title": "Yana Belova",
-        "intro": "Yana Belova is a professional massage therapist dedicated to helping clients achieve physical relief and relaxation.",
-        "roleLabel": "Massage Therapist",
-        "roles": [
-          "Massage Therapist",
-          "Bodywork Therapist",
-          "Recovery Specialist"
+        "intro": "Yana Belova is a professional massage therapist and manual therapy practitioner who helps clients achieve physical recovery and bodily balance.",
+        "processTitle": "How a session unfolds",
+        "process": [
+          "Initial consultation.",
+          "Physical health assessment based on physiotherapy evaluation principles prior to the massage session.",
+          "Delivery of the chosen massage treatment."
         ],
-        "skillsTitle": "Skills",
-        "skills": [
-          "Deep tissue techniques",
+        "serviceListTitle": "Techniques and treatments",
+        "serviceList": [
+          "Classic Swedish massage",
+          "Deep tissue / Therapeutic massage",
           "Trigger point therapy",
-          "Muscular assessment"
+          "Sports massage",
+          "Myofascial release",
+          "Stretching techniques (passive and active)",
+          "Lymphatic drainage massage",
+          "Facial massage"
         ]
       },
       "booking": {
@@ -265,18 +270,23 @@
       },
       "aboutYana": {
         "title": "Яна Белова",
-        "intro": "Яна Белова — массажист, который помогает снять напряжение, вернуть телу легкость и восстановить внутренний баланс.",
-        "roleLabel": "Массажист",
-        "roles": [
-          "Массажист",
-          "Телесный терапевт",
-          "Специалист по восстановлению"
+        "intro": "Яна Белова — профессиональный массажист и практик мануальной терапии, помогающий достичь физического восстановления и баланса тела.",
+        "processTitle": "Как проходит сеанс",
+        "process": [
+          "Первичная консультация.",
+          "Оценка физического состояния по принципам физиотерапевтического обследования перед сеансом массажа.",
+          "Проведение выбранной массажной процедуры."
         ],
-        "skillsTitle": "Навыки",
-        "skills": [
-          "Глубокий массаж тканей",
-          "Триггерные точки",
-          "Мягкая работа с зажимами"
+        "serviceListTitle": "Техники и услуги",
+        "serviceList": [
+          "Классический шведский массаж",
+          "Глубокотканный / Терапевтический массаж",
+          "Терапия триггерных точек",
+          "Спортивный массаж",
+          "Миофасциальный релиз",
+          "Техники растяжения (пассивные и активные)",
+          "Лимфодренажный массаж",
+          "Массаж лица"
         ]
       },
       "booking": {
@@ -515,18 +525,23 @@
       },
       "aboutYana": {
         "title": "Yana Belova",
-        "intro": "Yana Belova on massöör, kes aitab pinget leevendada, tuua kehasse kergust ja taastada tasakaalu.",
-        "roleLabel": "Massöör",
-        "roles": [
-          "Massöör",
-          "Keha terapeut",
-          "Taastumise spetsialist"
+        "intro": "Yana Belova – professionaalne massöör ja manuaalterapeudi praktik, kes aitab saavutada füüsilist taastumist ja keha tasakaalustamist.",
+        "processTitle": "Kuidas seanss toimub",
+        "process": [
+          "Esmane konsultatsioon.",
+          "Füsioteraapilise hindamise põhimõtete alusel tehtav füüsilise tervise hindamine enne massaažiseanssi.",
+          "Valitud massaažiteenuse osutamine."
         ],
-        "skillsTitle": "Oskused",
-        "skills": [
-          "Süvakoemassaaž",
-          "Trigerpunktid",
-          "Pehme töö pingetega"
+        "serviceListTitle": "Tehnikad ja teenused",
+        "serviceList": [
+          "Rootsi klassikaline massaaž",
+          "Süvakoemassaaž / Terapeudiline massaaž",
+          "Trigerpunktide teraapia",
+          "Spordimassaaž",
+          "Müofastsiaalne vabastamine",
+          "Venitustehnikad (passiivsed ja aktiivsed)",
+          "Lümfimassaaž",
+          "Näomassaaž"
         ]
       },
       "booking": {

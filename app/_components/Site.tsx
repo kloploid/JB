@@ -7,6 +7,7 @@ import {
   meta,
   LANGS,
   SERVICE_IMG,
+  SERVICE_IMG_POSITION,
   type Lang,
   type SiteContent,
 } from "@/content/site-content";
@@ -719,6 +720,7 @@ function Services({
                       alt={item.name}
                       fill
                       sizes="(min-width: 1024px) 360px, (min-width: 640px) 45vw, 90vw"
+                      style={{ objectPosition: SERVICE_IMG_POSITION[item.id] ?? "center" }}
                       className="object-cover transition duration-700 hover:scale-105"
                     />
                     {isFeatured && (
@@ -948,12 +950,12 @@ function MeetYana({ t, s }: { t: SiteContent; s: Copy }) {
     <section className="py-24 lg:py-32">
       <div className="mx-auto grid max-w-6xl gap-12 px-6 md:grid-cols-[5fr_6fr] md:items-center md:gap-16 lg:px-10">
         <div className="relative">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-sand">
+          <div className="relative aspect-[2/3] overflow-hidden rounded-[2rem] bg-sand">
             <Image
-              src="/welcome1.jpg"
+              src="/yana-room.jpg"
               alt={t.aboutYana.title}
               fill
-              sizes="(min-width: 768px) 380px, 80vw"
+              sizes="(min-width: 768px) 460px, 80vw"
               className="object-cover"
             />
           </div>
@@ -969,25 +971,40 @@ function MeetYana({ t, s }: { t: SiteContent; s: Copy }) {
             {t.aboutYana.intro}
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-2">
-            {t.aboutYana.roles.map((r) => (
-              <span
-                key={r}
-                className="rounded-full border border-sand bg-surface px-3.5 py-1.5 text-xs uppercase tracking-wider text-ink-muted"
-              >
-                {r}
-              </span>
-            ))}
+          <div className="mt-10">
+            <p className="text-[11px] uppercase tracking-[0.28em] text-sage-deep">
+              {t.aboutYana.processTitle}
+            </p>
+            <ol className="mt-5 divide-y divide-sand/80">
+              {t.aboutYana.process.map((step, i) => (
+                <li
+                  key={step}
+                  className="grid grid-cols-[auto_1fr] items-baseline gap-x-5 py-4 first:pt-2 last:pb-0"
+                >
+                  <span className="font-serif text-2xl font-light leading-none text-sage-deep tabular-nums">
+                    0{i + 1}
+                  </span>
+                  <span className="text-[15px] leading-relaxed text-ink">
+                    {step}
+                  </span>
+                </li>
+              ))}
+            </ol>
           </div>
 
-          <ul className="mt-8 space-y-2">
-            {t.aboutYana.skills.map((sk) => (
-              <li key={sk} className="flex items-center gap-3 text-[15px] text-ink">
-                <span className="inline-block h-px w-7 bg-sage-deep" />
-                {sk}
-              </li>
-            ))}
-          </ul>
+          <div className="mt-10">
+            <p className="text-[11px] uppercase tracking-[0.28em] text-sage-deep">
+              {t.aboutYana.serviceListTitle}
+            </p>
+            <ul className="mt-4 grid gap-x-6 gap-y-2 sm:grid-cols-2">
+              {t.aboutYana.serviceList.map((sk) => (
+                <li key={sk} className="flex items-center gap-3 text-[15px] text-ink">
+                  <span className="inline-block h-px w-5 shrink-0 bg-sage-deep" />
+                  {sk}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </section>
