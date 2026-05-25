@@ -161,11 +161,6 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){var p=location.pathname;document.documentElement.lang=p.indexOf("/ru")===0?"ru":p.indexOf("/en")===0?"en":"et";})();`,
-          }}
-        />
       </head>
       <body className="min-h-dvh bg-background text-ink">
         {children}

@@ -1,6 +1,7 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import dynamic from "next/dynamic";
 import {
   languages,
   meta,
@@ -9,31 +10,401 @@ import {
   type Lang,
   type SiteContent,
 } from "@/content/site-content";
-import {
-  SALES,
-  FEATURED_ID,
-  OUTCOME_IMG,
-  LOCATION_GEO,
-  PAGE_PATHS,
-  buildCalendlyUrl,
-  lowestPrice,
-  parsePriceTiers,
-  type Copy,
-} from "./sales";
-import CalendlyButton from "./CalendlyButton";
-import CalendlyInline from "./CalendlyInline";
-import ReviewsCarousel from "./ReviewsCarousel";
+import LocationsMap from "./LocationsMap";
 
-const LocationsMap = dynamic(() => import("./LocationsMap"), {
-  loading: () => (
+declare global {
+  interface Window {
+    Calendly?: {
+      initPopupWidget: (opts: { url: string }) => void;
+      initInlineWidget: (opts: {
+        url: string;
+        parentElement: HTMLElement;
+      }) => void;
+    };
+  }
+}
+
+const CALENDLY_LOCALE: Record<Lang, string> = {
+  en: "en",
+  ru: "ru",
+  et: "et",
+};
+
+function buildCalendlyUrl(lang: Lang, embed: boolean): string {
+  const params = new URLSearchParams({
+    locale: CALENDLY_LOCALE[lang],
+  });
+  if (embed) {
+    params.set("hide_gdpr_banner", "1");
+    params.set("background_color", "ffffff");
+    params.set("text_color", "2a2724");
+    params.set("primary_color", "6e8c71");
+  }
+  return `${meta.booking_calendly}?${params.toString()}`;
+}
+
+function openCalendly(url: string) {
+  if (typeof window === "undefined") return;
+  if (window.Calendly?.initPopupWidget) {
+    window.Calendly.initPopupWidget({ url });
+  } else {
+    window.open(url, "_blank", "noopener,noreferrer");
+  }
+}
+
+function CalendlyInline({ url }: { url: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    let cancelled = false;
+
+    const mount = () => {
+      const Cal = window.Calendly;
+      if (!Cal?.initInlineWidget) return false;
+      el.innerHTML = "";
+      Cal.initInlineWidget({ url, parentElement: el });
+      return true;
+    };
+
+    if (mount()) return;
+    const interval = setInterval(() => {
+      if (cancelled) return;
+      if (mount()) clearInterval(interval);
+    }, 200);
+
+    return () => {
+      cancelled = true;
+      clearInterval(interval);
+    };
+  }, [url]);
+
+  return (
     <div
-      className="h-[440px] w-full bg-background-soft"
-      aria-label="Loading map"
+      ref={ref}
+      style={{ minWidth: "300px", height: "680px" }}
+      className="bg-background-soft"
     />
-  ),
-});
+  );
+}
 
-export default function Site({ lang }: { lang: Lang }) {
+type Copy = {
+  promo: string;
+  navLinks: { why: string; services: string; pricing: string; where: string };
+  heroEyebrow: string;
+  heroTitle: string;
+  heroSub: string;
+  ctaBook: string;
+  ctaServices: string;
+  trust: string;
+  outcomesEyebrow: string;
+  outcomesTitle: string;
+  outcomesIntro: string;
+  outcomes: string[];
+  outcomeDesc: string[];
+  whyTitle: string;
+  why: { title: string; text: string }[];
+  servicesEyebrow: string;
+  servicesTitle: string;
+  featured: string;
+  from: string;
+  book: string;
+  minLabel: string;
+  reviewsEyebrow: string;
+  reviewsTitle: string;
+  pricingEyebrow: string;
+  pricingTitle: string;
+  pricingNote: string;
+  pricingWidgetTitle: string;
+  yanaEyebrow: string;
+  yanaTitle: string;
+  whereEyebrow: string;
+  whereTitle: string;
+  hoursTitle: string;
+  openInMaps: string;
+  finalEyebrow: string;
+  finalTitle: string;
+  finalSub: string;
+  spaceCaption: string;
+};
+
+const SALES: Record<Lang, Copy> = {
+  en: {
+    promo: "First visit — 10% off",
+    navLinks: {
+      why: "Approach",
+      services: "Treatments",
+      pricing: "Pricing",
+      where: "Location",
+    },
+    heroEyebrow: "Massage therapy · Tallinn",
+    heroTitle: "Relief your body will remember.",
+    heroSub:
+      "Therapeutic bodywork that releases tension, restores mobility, and quiets a busy nervous system — in a calm, clinical room.",
+    ctaBook: "Book a session",
+    ctaServices: "Browse treatments",
+    trust: "Trusted by clients across Tallinn",
+    outcomesEyebrow: "Outcomes",
+    outcomesTitle: "What you walk out with",
+    outcomesIntro:
+      "Every session targets the result you came for — not a generic routine. Pick by what your body needs, not by what's on a menu.",
+    outcomes: [
+      "Back & neck without pain",
+      "Faster recovery after sport",
+      "Less swelling, better flow",
+      "Skin that looks rested",
+    ],
+    outcomeDesc: [
+      "Targeted release of long-standing tension in the spine and shoulders.",
+      "Muscle elasticity restored, lactic acid flushed, less next-day soreness.",
+      "Manual lymph drainage that wakes circulation and lightens heavy legs.",
+      "Gentle facial work that lifts, smooths and brightens in one session.",
+    ],
+    whyTitle: "Why clients come back",
+    why: [
+      {
+        title: "Tailored to your body, each visit",
+        text: "No fixed protocol. Every session reads where you actually are today — pressure, focus and length adjust to you.",
+      },
+      {
+        title: "Calm, medical-grade space",
+        text: "Sessions take place inside Pelgulinna Tervisemaja and a dedicated room in Lasnamäe — quiet, clean, properly equipped.",
+      },
+      {
+        title: "Pay how you want",
+        text: "Pay with Stebby, cash, or by invoice sent to your email. Plus a 10% discount on your very first visit.",
+      },
+    ],
+    servicesEyebrow: "Treatments",
+    servicesTitle: "Pick what your body is asking for",
+    featured: "Most booked",
+    from: "from",
+    book: "Book",
+    minLabel: "minutes",
+    reviewsEyebrow: "Words from clients",
+    reviewsTitle: "What people say after a session",
+    pricingEyebrow: "Pricing",
+    pricingTitle: "Session pricing",
+    pricingNote:
+      "Cancellation under 12h — 50% of the fee. First visit always −10%.",
+    pricingWidgetTitle: "Pick a time that fits",
+    yanaEyebrow: "Your therapist",
+    yanaTitle: "Hi, I'm Yana.",
+    whereEyebrow: "Practice",
+    whereTitle: "Where to find me",
+    hoursTitle: "Hours",
+    openInMaps: "Open in Google Maps",
+    finalEyebrow: "Ready when you are",
+    finalTitle: "Give your body one honest hour.",
+    finalSub: "Book your first session — the 10% discount is already included.",
+    spaceCaption: "Inside the practice — Tallinn",
+  },
+  ru: {
+    promo: "Первый визит — скидка 10%",
+    navLinks: {
+      why: "Подход",
+      services: "Процедуры",
+      pricing: "Цены",
+      where: "Адрес",
+    },
+    heroEyebrow: "Массажная терапия · Таллинн",
+    heroTitle: "Облегчение, которое тело запомнит.",
+    heroSub:
+      "Терапевтический массаж: снимаем напряжение, возвращаем подвижность и успокаиваем уставшую нервную систему — в тихом кабинете.",
+    ctaBook: "Записаться",
+    ctaServices: "Смотреть процедуры",
+    trust: "Уже доверяют клиенты по всему Таллинну",
+    outcomesEyebrow: "Результат",
+    outcomesTitle: "С чем вы уходите",
+    outcomesIntro:
+      "Каждый сеанс ведёт к результату, за которым вы пришли — а не к одинаковому набору движений. Выбирайте по запросу тела, а не по меню.",
+    outcomes: [
+      "Спина и шея без боли",
+      "Быстрее восстановиться после спорта",
+      "Меньше отёков, лучше лимфоток",
+      "Отдохнувшая кожа лица",
+    ],
+    outcomeDesc: [
+      "Точечная работа с давним напряжением в спине и плечах.",
+      "Эластичность мышц, вывод молочной кислоты, меньше крепатуры на следующий день.",
+      "Мягкий лимфодренаж, который будит циркуляцию и облегчает ноги.",
+      "Деликатная работа с лицом: тонус, лёгкий лифтинг и свежесть за один сеанс.",
+    ],
+    whyTitle: "Почему сюда возвращаются",
+    why: [
+      {
+        title: "Подбор под ваше состояние",
+        text: "Никаких жёстких протоколов. Каждый сеанс настраивается под вас — давление, фокус и продолжительность.",
+      },
+      {
+        title: "Спокойный медицинский кабинет",
+        text: "Сеансы проходят в Pelgulinna Tervisemaja и в отдельном кабинете в Lasnamäe — тихо, чисто, всё оборудовано.",
+      },
+      {
+        title: "Удобная оплата",
+        text: "Stebby, наличными или счётом на email. На первый визит — скидка 10%.",
+      },
+    ],
+    servicesEyebrow: "Процедуры",
+    servicesTitle: "Выберите то, что просит ваше тело",
+    featured: "Чаще всего бронируют",
+    from: "от",
+    book: "Записаться",
+    minLabel: "минут",
+    reviewsEyebrow: "Отзывы",
+    reviewsTitle: "Что говорят клиенты после сеанса",
+    pricingEyebrow: "Цены",
+    pricingTitle: "Стоимость сеансов",
+    pricingNote:
+      "Отмена менее чем за 12 часов — 50% от стоимости. На первый визит всегда −10%.",
+    pricingWidgetTitle: "Выберите удобное время",
+    yanaEyebrow: "Ваш терапевт",
+    yanaTitle: "Привет, я Яна.",
+    whereEyebrow: "Где принимаю",
+    whereTitle: "Адреса и график",
+    hoursTitle: "График",
+    openInMaps: "Открыть на карте",
+    finalEyebrow: "Я готова — когда вы готовы",
+    finalTitle: "Подарите телу один честный час.",
+    finalSub: "Запишитесь — скидка 10% на первый визит уже учтена.",
+    spaceCaption: "Внутри кабинета — Таллинн",
+  },
+  et: {
+    promo: "Esimene visiit — −10%",
+    navLinks: {
+      why: "Lähenemine",
+      services: "Teenused",
+      pricing: "Hinnad",
+      where: "Asukoht",
+    },
+    heroEyebrow: "Massaažiteraapia · Tallinn",
+    heroTitle: "Kergus, mille keha mäletab.",
+    heroSub:
+      "Teraapiline kehatöö, mis vabastab pinge, taastab liikuvuse ja rahustab närvisüsteemi — vaikses ja puhtas ruumis.",
+    ctaBook: "Broneeri seanss",
+    ctaServices: "Vaata teenuseid",
+    trust: "Usaldatud klientide poolt üle Tallinna",
+    outcomesEyebrow: "Tulemus",
+    outcomesTitle: "Mida sa endaga kaasa võtad",
+    outcomesIntro:
+      "Iga seanss viib tulemuseni, mille pärast tulid — mitte standardne rutiin. Vali selle järgi, mida sinu keha vajab.",
+    outcomes: [
+      "Selg ja kael valuvabaks",
+      "Kiirem taastumine pärast sporti",
+      "Vähem turseid, parem lümfivool",
+      "Puhanud näonahk",
+    ],
+    outcomeDesc: [
+      "Sihipärane töö pikaajalise pingega selgroos ja õlgades.",
+      "Lihaste elastsus taastatud, piimhape välja, vähem järgmise päeva valu.",
+      "Õrn lümfidrenaaž, mis äratab vereringe ja kergendab raskeid jalgu.",
+      "Õrn näotöö, mis tõstab, siludab ja särab juba ühe seansiga.",
+    ],
+    whyTitle: "Miks kliendid tagasi tulevad",
+    why: [
+      {
+        title: "Kohandatud sinu kehale",
+        text: "Pole jäika protokolli. Iga seanss kohaneb sinu hetkeseisundiga — surve, fookus ja pikkus.",
+      },
+      {
+        title: "Rahulik meditsiiniline ruum",
+        text: "Seansid toimuvad Pelgulinna Tervisemajas ja eraldi ruumis Lasnamäel — vaikne, puhas, hästi varustatud.",
+      },
+      {
+        title: "Mugavad maksevõimalused",
+        text: "Stebby, sularaha või arve e-postiga. Esimesel visiidil −10%.",
+      },
+    ],
+    servicesEyebrow: "Teenused",
+    servicesTitle: "Vali, mida sinu keha küsib",
+    featured: "Enim broneeritud",
+    from: "alates",
+    book: "Broneeri",
+    minLabel: "minutit",
+    reviewsEyebrow: "Kliendid räägivad",
+    reviewsTitle: "Mida öeldakse pärast seanssi",
+    pricingEyebrow: "Hinnad",
+    pricingTitle: "Seansside hinnad",
+    pricingNote:
+      "Tühistamine alla 12h — 50% tasust. Esimene visiit alati −10%.",
+    pricingWidgetTitle: "Vali sobiv aeg",
+    yanaEyebrow: "Sinu terapeut",
+    yanaTitle: "Tere, mina olen Yana.",
+    whereEyebrow: "Praktika",
+    whereTitle: "Kus mind leiad",
+    hoursTitle: "Lahtiolekuajad",
+    openInMaps: "Ava Google Mapsis",
+    finalEyebrow: "Valmis, kui sina oled",
+    finalTitle: "Kingi kehale üks aus tund.",
+    finalSub: "Broneeri — 10% allahindlus on juba arvestatud.",
+    spaceCaption: "Praktika ruumis — Tallinn",
+  },
+};
+
+const FEATURED_ID = 2;
+
+const OUTCOME_IMG = [
+  "/service2.jpg",
+  "/service3.jpg",
+  "/service4.jpg",
+  "/service5.jpg",
+];
+
+function lowestPrice(price: string): number | null {
+  const matches = price.match(/(\d+)\s*€/g);
+  if (!matches) return null;
+  const nums = matches.map((m) => parseInt(m, 10));
+  return Math.min(...nums);
+}
+
+type PriceTier = { minutes: number; price: string };
+
+function parsePriceTiers(s: string): PriceTier[] | null {
+  const parts = s.split(/\s*\|\s*/).map((p) => p.trim());
+  const tiers: PriceTier[] = [];
+  for (const part of parts) {
+    const m = part.match(/^(\d+)\s*[мmМM]\s+(\d+)\s*€$/u);
+    if (!m) return null;
+    tiers.push({ minutes: parseInt(m[1], 10), price: `${m[2]}€` });
+  }
+  return tiers.length ? tiers : null;
+}
+
+const PAGE_TITLES: Record<Lang, string> = {
+  et: "SomaSensus — Yana Belova · Massaaž Tallinnas",
+  ru: "SomaSensus — Яна Белова · Массаж в Таллинне",
+  en: "SomaSensus — Yana Belova · Massage in Tallinn",
+};
+
+const PAGE_DESCRIPTIONS: Record<Lang, string> = {
+  et: "Teraapiline massaaž Tallinnas — vabasta pinge, taasta liikuvus. Pelgulinna Tervisemaja ja Lasnamäe. Esimene visiit −10%.",
+  ru: "Терапевтический массаж в Таллинне — снимаем напряжение, возвращаем подвижность. Pelgulinna Tervisemaja и Lasnamäe. Первый визит −10%.",
+  en: "Therapeutic massage in Tallinn — release tension, restore mobility. Pelgulinna Tervisemaja & Lasnamäe. First visit −10%.",
+};
+
+export default function Site() {
+  const [lang, setLang] = useState<Lang>("et");
+
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("lang");
+      if (saved === "en" || saved === "ru" || saved === "et") setLang(saved);
+    } catch {}
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.lang = lang;
+    document.title = PAGE_TITLES[lang];
+    const metaDesc = document.querySelector<HTMLMetaElement>(
+      'meta[name="description"]',
+    );
+    if (metaDesc) metaDesc.content = PAGE_DESCRIPTIONS[lang];
+    try {
+      localStorage.setItem("lang", lang);
+    } catch {}
+  }, [lang]);
+
   const t = languages[lang];
   const s = SALES[lang];
   const popupUrl = buildCalendlyUrl(lang, false);
@@ -42,17 +413,13 @@ export default function Site({ lang }: { lang: Lang }) {
   return (
     <>
       <PromoBar text={s.promo} />
-      <Nav lang={lang} s={s} />
+      <Nav lang={lang} setLang={setLang} s={s} />
       <main>
         <Hero s={s} popupUrl={popupUrl} />
         <Outcomes s={s} />
         <Why s={s} />
         <Services t={t} s={s} popupUrl={popupUrl} />
-        <ReviewsCarousel
-          reviews={t.feedback.reviews}
-          eyebrow={s.reviewsEyebrow}
-          title={s.reviewsTitle}
-        />
+        <Reviews t={t} s={s} />
         <Pricing t={t} s={s} embedUrl={embedUrl} />
         <MeetYana t={t} s={s} />
         <Where t={t} s={s} />
@@ -71,14 +438,19 @@ function PromoBar({ text }: { text: string }) {
   );
 }
 
-function Nav({ lang, s }: { lang: Lang; s: Copy }) {
+function Nav({
+  lang,
+  setLang,
+  s,
+}: {
+  lang: Lang;
+  setLang: (l: Lang) => void;
+  s: Copy;
+}) {
   return (
     <header className="sticky top-0 z-50 border-b border-sand/60 bg-background/85 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 lg:px-10">
-        <Link
-          href={PAGE_PATHS[lang]}
-          className="flex items-center gap-3 font-serif text-2xl tracking-wide text-ink"
-        >
+        <a href="#top" className="flex items-center gap-3 font-serif text-2xl tracking-wide text-ink">
           <Image
             src="/logo.png"
             alt=""
@@ -90,41 +462,30 @@ function Nav({ lang, s }: { lang: Lang; s: Copy }) {
           <span className="hidden sm:inline">
             soma<span className="font-medium">sensus</span>
           </span>
-        </Link>
+        </a>
 
         <nav className="hidden items-center gap-8 text-[12px] uppercase tracking-[0.18em] text-ink-muted md:flex">
-          <a href="#why" className="transition hover:text-ink">
-            {s.navLinks.why}
-          </a>
-          <a href="#services" className="transition hover:text-ink">
-            {s.navLinks.services}
-          </a>
-          <a href="#pricing" className="transition hover:text-ink">
-            {s.navLinks.pricing}
-          </a>
-          <a href="#where" className="transition hover:text-ink">
-            {s.navLinks.where}
-          </a>
+          <a href="#why" className="transition hover:text-ink">{s.navLinks.why}</a>
+          <a href="#services" className="transition hover:text-ink">{s.navLinks.services}</a>
+          <a href="#pricing" className="transition hover:text-ink">{s.navLinks.pricing}</a>
+          <a href="#where" className="transition hover:text-ink">{s.navLinks.where}</a>
         </nav>
 
         <div className="flex items-center gap-1 rounded-full border border-sand bg-surface/80 px-1 py-1">
-          {LANGS.map((l) => {
-            const active = lang === l.code;
-            return (
-              <Link
-                key={l.code}
-                href={PAGE_PATHS[l.code]}
-                aria-current={active ? "page" : undefined}
-                className={`rounded-full px-2.5 py-1 text-[11px] font-medium tracking-wider transition ${
-                  active
-                    ? "bg-sage-deep text-white"
-                    : "text-ink-muted hover:text-ink"
-                }`}
-              >
-                {l.label}
-              </Link>
-            );
-          })}
+          {LANGS.map((l) => (
+            <button
+              key={l.code}
+              onClick={() => setLang(l.code)}
+              aria-pressed={lang === l.code}
+              className={`rounded-full px-2.5 py-1 text-[11px] font-medium tracking-wider transition ${
+                lang === l.code
+                  ? "bg-sage-deep text-white"
+                  : "text-ink-muted hover:text-ink"
+              }`}
+            >
+              {l.label}
+            </button>
+          ))}
         </div>
       </div>
     </header>
@@ -171,12 +532,13 @@ function Hero({ s, popupUrl }: { s: Copy; popupUrl: string }) {
           </p>
 
           <div className="mt-9 flex flex-wrap items-center gap-4">
-            <CalendlyButton
-              url={popupUrl}
+            <button
+              type="button"
+              onClick={() => openCalendly(popupUrl)}
               className="inline-flex items-center justify-center rounded-full bg-sage-deep px-7 py-3.5 text-sm font-medium tracking-wide text-white shadow-[0_10px_30px_-15px_rgba(110,140,113,0.7)] transition hover:bg-ink"
             >
               {s.ctaBook}
-            </CalendlyButton>
+            </button>
             <a
               href="#services"
               className="inline-flex items-center justify-center text-sm font-medium tracking-wide text-ink underline decoration-sand decoration-2 underline-offset-8 transition hover:decoration-sage-deep"
@@ -392,13 +754,14 @@ function Services({
                       ))}
                     </div>
                     <div className="mt-6 flex flex-1 items-end">
-                      <CalendlyButton
-                        url={popupUrl}
+                      <button
+                        type="button"
+                        onClick={() => openCalendly(popupUrl)}
                         className="inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-ink px-5 py-3 text-[13px] font-medium tracking-wide text-background transition hover:bg-sage-deep"
                       >
                         {s.book}
                         <span aria-hidden>→</span>
-                      </CalendlyButton>
+                      </button>
                     </div>
                   </div>
                 </article>
@@ -406,6 +769,88 @@ function Services({
             );
           })}
         </ul>
+      </div>
+    </section>
+  );
+}
+
+function Reviews({ t, s }: { t: SiteContent; s: Copy }) {
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  const scrollByCard = (dir: 1 | -1) => {
+    const el = trackRef.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>("[data-review-card]");
+    const cardW = card?.offsetWidth ?? 0;
+    el.scrollBy({ left: (cardW + 24) * dir, behavior: "smooth" });
+  };
+
+  return (
+    <section className="py-24 lg:py-32">
+      <div className="mx-auto max-w-6xl px-6 lg:px-10">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <p className="text-[11px] uppercase tracking-[0.32em] text-sage-deep">
+              {s.reviewsEyebrow}
+            </p>
+            <h2 className="mt-4 max-w-xl font-serif text-4xl font-light leading-tight text-ink md:text-5xl">
+              {s.reviewsTitle}
+            </h2>
+          </div>
+          <div className="flex items-center gap-5">
+            <Stars />
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={() => scrollByCard(-1)}
+                aria-label="Previous review"
+                className="inline-flex size-11 items-center justify-center rounded-full border border-sand bg-surface text-ink transition hover:border-sage-deep hover:text-sage-deep hover:shadow-sm"
+              >
+                <ArrowIcon dir="left" />
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollByCard(1)}
+                aria-label="Next review"
+                className="inline-flex size-11 items-center justify-center rounded-full border border-sand bg-surface text-ink transition hover:border-sage-deep hover:text-sage-deep hover:shadow-sm"
+              >
+                <ArrowIcon dir="right" />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div
+          ref={trackRef}
+          className="review-track mt-12 snap-x snap-mandatory overflow-x-auto scroll-smooth pb-4"
+        >
+          <ul className="flex gap-6">
+            {t.feedback.reviews.map((r, i) => (
+              <li
+                key={i}
+                data-review-card
+                className="flex shrink-0 snap-start basis-full sm:basis-[calc((100%-1.5rem)/2)] lg:basis-[calc((100%-3rem)/3)]"
+              >
+                <figure className="flex h-full w-full flex-col justify-between rounded-3xl border border-sand bg-surface p-7 transition duration-300 hover:-translate-y-0.5 hover:border-sage/70 hover:shadow-[0_18px_40px_-30px_rgba(31,29,26,0.25)]">
+                  <div className="flex gap-0.5 text-sage-deep">
+                    {Array.from({ length: 5 }).map((_, idx) => (
+                      <StarIcon key={idx} />
+                    ))}
+                  </div>
+                  <blockquote className="mt-5 font-serif text-lg font-light italic leading-relaxed text-ink">
+                    “{r.text}”
+                  </blockquote>
+                  <figcaption className="mt-6 flex items-center gap-3 text-sm text-ink-muted">
+                    <span className="inline-flex size-9 items-center justify-center rounded-full bg-sage/30 text-sage-deep">
+                      <HeartIcon />
+                    </span>
+                    {r.author}
+                  </figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );
@@ -537,10 +982,7 @@ function MeetYana({ t, s }: { t: SiteContent; s: Copy }) {
 
           <ul className="mt-8 space-y-2">
             {t.aboutYana.skills.map((sk) => (
-              <li
-                key={sk}
-                className="flex items-center gap-3 text-[15px] text-ink"
-              >
+              <li key={sk} className="flex items-center gap-3 text-[15px] text-ink">
                 <span className="inline-block h-px w-7 bg-sage-deep" />
                 {sk}
               </li>
@@ -551,6 +993,21 @@ function MeetYana({ t, s }: { t: SiteContent; s: Copy }) {
     </section>
   );
 }
+
+const LOCATION_GEO: { lat: number; lng: number; pageUrl: string }[] = [
+  {
+    lat: 59.4448,
+    lng: 24.6967,
+    pageUrl:
+      "https://www.google.com/maps/place/Pelgulinna+Tervisemaja,+%C3%84dala+1,+Tallinn",
+  },
+  {
+    lat: 59.4486,
+    lng: 24.8456,
+    pageUrl:
+      "https://www.google.com/maps/place/Linnam%C3%A4e+37a,+Lasnam%C3%A4e,+Tallinn",
+  },
+];
 
 function Where({ t, s }: { t: SiteContent; s: Copy }) {
   return (
@@ -660,12 +1117,13 @@ function FinalCta({ s, popupUrl }: { s: Copy; popupUrl: string }) {
         <p className="mx-auto mt-5 max-w-xl text-base text-white/85 md:text-lg">
           {s.finalSub}
         </p>
-        <CalendlyButton
-          url={popupUrl}
+        <button
+          type="button"
+          onClick={() => openCalendly(popupUrl)}
           className="mt-10 inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-sm font-medium tracking-wide text-sage-deep transition hover:bg-background"
         >
           {s.ctaBook}
-        </CalendlyButton>
+        </button>
       </div>
     </section>
   );
@@ -729,8 +1187,36 @@ function Stars() {
 
 function StarIcon() {
   return (
-    <svg viewBox="0 0 20 20" className="size-3.5 fill-current" aria-hidden>
+    <svg
+      viewBox="0 0 20 20"
+      className="size-3.5 fill-current"
+      aria-hidden
+    >
       <path d="M10 1.5l2.6 5.3 5.9.9-4.2 4.1 1 5.8L10 14.9l-5.3 2.7 1-5.8L1.5 7.7l5.9-.9z" />
+    </svg>
+  );
+}
+
+function HeartIcon() {
+  return (
+    <svg viewBox="0 0 20 20" className="size-4 fill-current" aria-hidden>
+      <path d="M10 17.5s-6.5-4-6.5-8.5C3.5 6.4 5.5 4.5 8 4.5c1 0 1.8.4 2 1c.2-.6 1-1 2-1c2.5 0 4.5 1.9 4.5 4.5C16.5 13.5 10 17.5 10 17.5z" />
+    </svg>
+  );
+}
+
+function ArrowIcon({ dir }: { dir: "left" | "right" }) {
+  return (
+    <svg
+      viewBox="0 0 20 20"
+      className={`size-4 stroke-current ${dir === "left" ? "rotate-180" : ""}`}
+      fill="none"
+      strokeWidth={1.6}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <path d="M4 10h12M11 5l5 5-5 5" />
     </svg>
   );
 }
