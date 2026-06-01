@@ -165,6 +165,18 @@ export default function RootLayout({
       <body className="min-h-dvh bg-background text-ink">
         {children}
         <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-32CZVTX59C"
+          strategy="afterInteractive"
+        />
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-32CZVTX59C');
+          `}
+        </Script>
+        <Script
           src="https://assets.calendly.com/assets/external/widget.js"
           strategy="afterInteractive"
         />
