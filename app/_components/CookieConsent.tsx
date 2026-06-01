@@ -11,25 +11,34 @@ declare global {
 
 const COPY: Record<
   Lang,
-  { text: string; accept: string; decline: string; privacy: string }
+  {
+    text: string;
+    accept: string;
+    decline: string;
+    privacy: string;
+    more: string;
+  }
 > = {
   et: {
     text: "Kasutame küpsiseid saidi liikluse analüüsimiseks. Võid analüütika küpsised vastu võtta või neist keelduda.",
     accept: "Nõustun",
     decline: "Keeldun",
     privacy: "Vajalikud küpsised jäävad alati aktiivseks.",
+    more: "Privaatsuspoliitika",
   },
   ru: {
     text: "Мы используем cookies для анализа посещаемости сайта. Вы можете принять аналитические cookies или отказаться.",
     accept: "Принять",
     decline: "Отклонить",
     privacy: "Необходимые cookies всегда активны.",
+    more: "Политика конфиденциальности",
   },
   en: {
     text: "We use cookies to analyse site traffic. You can accept or decline analytics cookies.",
     accept: "Accept",
     decline: "Decline",
     privacy: "Essential cookies always stay active.",
+    more: "Privacy Policy",
   },
 };
 
@@ -83,7 +92,15 @@ export default function CookieConsent() {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div className="text-sm leading-relaxed text-ink">
           <p>{c.text}</p>
-          <p className="mt-1 text-xs text-ink-muted">{c.privacy}</p>
+          <p className="mt-1 text-xs text-ink-muted">
+            {c.privacy}{" "}
+            <a
+              href="/privacy"
+              className="underline underline-offset-2 transition hover:text-ink"
+            >
+              {c.more}
+            </a>
+          </p>
         </div>
         <div className="flex shrink-0 gap-2">
           <button

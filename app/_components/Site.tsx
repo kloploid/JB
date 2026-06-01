@@ -430,10 +430,16 @@ export default function Site() {
         <Where t={t} s={s} />
         <FinalCta s={s} popupUrl={popupUrl} />
       </main>
-      <Footer />
+      <Footer lang={lang} />
     </>
   );
 }
+
+const PRIVACY_LABEL: Record<Lang, string> = {
+  en: "Privacy Policy",
+  ru: "Политика конфиденциальности",
+  et: "Privaatsuspoliitika",
+};
 
 function PromoBar({ text }: { text: string }) {
   return (
@@ -1151,7 +1157,7 @@ function FinalCta({ s, popupUrl }: { s: Copy; popupUrl: string }) {
   );
 }
 
-function Footer() {
+function Footer({ lang }: { lang: Lang }) {
   return (
     <footer className="border-t border-sand bg-background">
       <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-10 text-sm text-ink-muted md:flex-row lg:px-10">
@@ -1195,7 +1201,15 @@ function Footer() {
 
       <div className="border-t border-sand/60">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-6 py-4 text-[12px] text-ink-muted sm:flex-row lg:px-10">
-          <p>© {new Date().getFullYear()} Yana Belova · Tallinn</p>
+          <div className="flex items-center gap-4">
+            <p>© {new Date().getFullYear()} Yana Belova · Tallinn</p>
+            <a
+              href="/privacy"
+              className="underline-offset-4 transition hover:text-ink hover:underline"
+            >
+              {PRIVACY_LABEL[lang]}
+            </a>
+          </div>
           <p className="flex items-center gap-1.5">
             <span>Made by</span>
             <span className="font-medium tracking-wide text-ink">
