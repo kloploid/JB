@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   languages,
   meta,
@@ -376,35 +377,8 @@ function parsePriceTiers(s: string): PriceTier[] | null {
   return tiers.length ? tiers : null;
 }
 
-const PAGE_TITLES: Record<Lang, string> = {
-  et: "SomaSensus — Yana Belova · Massaaž Tallinnas",
-  ru: "SomaSensus — Яна Белова · Массаж в Таллинне",
-  en: "SomaSensus — Yana Belova · Massage in Tallinn",
-};
-
-const PAGE_DESCRIPTIONS: Record<Lang, string> = {
-  et: "Teraapiline massaaž Tallinnas — vabasta pinge, taasta liikuvus. Pelgulinna Tervisemaja ja Lasnamäe. Esimene visiit −10%.",
-  ru: "Терапевтический массаж в Таллинне — снимаем напряжение, возвращаем подвижность. Pelgulinna Tervisemaja и Lasnamäe. Первый визит −10%.",
-  en: "Therapeutic massage in Tallinn — release tension, restore mobility. Pelgulinna Tervisemaja & Lasnamäe. First visit −10%.",
-};
-
-export default function Site() {
-  const [lang, setLang] = useState<Lang>("et");
-
+export default function Site({ lang }: { lang: Lang }) {
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem("lang");
-      if (saved === "en" || saved === "ru" || saved === "et") setLang(saved);
-    } catch {}
-  }, []);
-
-  useEffect(() => {
-    document.documentElement.lang = lang;
-    document.title = PAGE_TITLES[lang];
-    const metaDesc = document.querySelector<HTMLMetaElement>(
-      'meta[name="description"]',
-    );
-    if (metaDesc) metaDesc.content = PAGE_DESCRIPTIONS[lang];
     try {
       localStorage.setItem("lang", lang);
     } catch {}
@@ -418,7 +392,7 @@ export default function Site() {
   return (
     <>
       <PromoBar text={s.promo} />
-      <Nav lang={lang} setLang={setLang} s={s} />
+      <Nav lang={lang} s={s} />
       <main>
         <Hero s={s} popupUrl={popupUrl} />
         <Outcomes s={s} />
@@ -449,15 +423,7 @@ function PromoBar({ text }: { text: string }) {
   );
 }
 
-function Nav({
-  lang,
-  setLang,
-  s,
-}: {
-  lang: Lang;
-  setLang: (l: Lang) => void;
-  s: Copy;
-}) {
+function Nav({ lang, s }: { lang: Lang; s: Copy }) {
   return (
     <header className="sticky top-0 z-50 border-b border-sand/60 bg-background/85 backdrop-blur-md">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 lg:px-10">
@@ -484,10 +450,11 @@ function Nav({
 
         <div className="flex items-center gap-1 rounded-full border border-sand bg-surface/80 px-1 py-1">
           {LANGS.map((l) => (
-            <button
+            <Link
               key={l.code}
-              onClick={() => setLang(l.code)}
-              aria-pressed={lang === l.code}
+              href={`/${l.code}`}
+              hrefLang={l.code}
+              aria-current={lang === l.code ? "true" : undefined}
               className={`rounded-full px-2.5 py-1 text-[11px] font-medium tracking-wider transition ${
                 lang === l.code
                   ? "bg-sage-deep text-white"
@@ -495,7 +462,7 @@ function Nav({
               }`}
             >
               {l.label}
-            </button>
+            </Link>
           ))}
         </div>
       </div>
@@ -1203,12 +1170,12 @@ function Footer({ lang }: { lang: Lang }) {
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-6 py-4 text-[12px] text-ink-muted sm:flex-row lg:px-10">
           <div className="flex items-center gap-4">
             <p>© {new Date().getFullYear()} Yana Belova · Tallinn</p>
-            <a
-              href="/privacy"
+            <Link
+              href={`/${lang}/privacy`}
               className="underline-offset-4 transition hover:text-ink hover:underline"
             >
               {PRIVACY_LABEL[lang]}
-            </a>
+            </Link>
           </div>
           <p className="flex items-center gap-1.5">
             <span>Made by</span>

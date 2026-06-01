@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
 import Link from "next/link";
-import { meta, type Lang } from "@/content/site-content";
+import { meta, isLang, DEFAULT_LOCALE, type Lang } from "@/content/site-content";
 
 type Section = { h: string; p: string[] };
 type Doc = {
@@ -181,21 +181,16 @@ const DOCS: Record<Lang, Doc> = {
 };
 
 export default function PrivacyPage() {
-  const [lang, setLang] = useState<Lang>("et");
-
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem("lang");
-      if (saved === "en" || saved === "ru" || saved === "et") setLang(saved);
-    } catch {}
-  }, []);
+  const params = useParams();
+  const raw = Array.isArray(params.lang) ? params.lang[0] : params.lang;
+  const lang: Lang = raw && isLang(raw) ? raw : DEFAULT_LOCALE;
 
   const d = DOCS[lang];
 
   return (
     <main className="mx-auto max-w-3xl px-6 py-16 lg:px-10 lg:py-24">
       <Link
-        href="/"
+        href={`/${lang}`}
         className="text-sm text-ink-muted underline-offset-4 transition hover:text-ink hover:underline"
       >
         {d.back}

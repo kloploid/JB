@@ -42,17 +42,8 @@ const COPY: Record<
   },
 };
 
-function readLang(): Lang {
-  try {
-    const saved = localStorage.getItem("lang");
-    if (saved === "en" || saved === "ru" || saved === "et") return saved;
-  } catch {}
-  return "et";
-}
-
-export default function CookieConsent() {
+export default function CookieConsent({ lang }: { lang: Lang }) {
   const [visible, setVisible] = useState(false);
-  const [lang, setLang] = useState<Lang>("et");
 
   useEffect(() => {
     let consent: string | null = null;
@@ -60,7 +51,9 @@ export default function CookieConsent() {
       consent = localStorage.getItem("cookie-consent");
     } catch {}
     if (consent !== "granted" && consent !== "denied") {
-      setLang(readLang());
+      // Client-only gate: localStorage is unavailable during SSR, so the banner
+      // is intentionally shown after mount to avoid a hydration mismatch.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setVisible(true);
     }
   }, []);
@@ -95,7 +88,7 @@ export default function CookieConsent() {
           <p className="mt-1 text-xs text-ink-muted">
             {c.privacy}{" "}
             <a
-              href="/privacy"
+              href={`/${lang}/privacy`}
               className="underline underline-offset-2 transition hover:text-ink"
             >
               {c.more}
