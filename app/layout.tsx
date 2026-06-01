@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Cormorant_Garamond } from "next/font/google";
 import Script from "next/script";
+import CookieConsent from "./_components/CookieConsent";
 import "./globals.css";
 
 const inter = Inter({
@@ -164,6 +165,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-dvh bg-background text-ink">
         {children}
+        <CookieConsent />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-32CZVTX59C"
           strategy="afterInteractive"
@@ -173,7 +175,32 @@ export default function RootLayout({
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
+            gtag('consent', 'default', {
+              ad_storage: 'denied',
+              ad_user_data: 'denied',
+              ad_personalization: 'denied',
+              analytics_storage: 'denied',
+              wait_for_update: 500,
+            });
+            var stored = (function(){ try { return localStorage.getItem('cookie-consent'); } catch (e) { return null; } })();
+            if (stored === 'granted') {
+              gtag('consent', 'update', {
+                ad_storage: 'granted',
+                ad_user_data: 'granted',
+                ad_personalization: 'granted',
+                analytics_storage: 'granted',
+              });
+            }
             gtag('config', 'G-32CZVTX59C');
+          `}
+        </Script>
+        <Script id="ms-clarity" strategy="afterInteractive">
+          {`
+            (function(c,l,a,r,i,t,y){
+                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "x0b558huwn");
           `}
         </Script>
         <Script
