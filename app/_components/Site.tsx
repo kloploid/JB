@@ -140,9 +140,9 @@ const SALES: Record<Lang, Copy> = {
       where: "Location",
     },
     heroEyebrow: "Massage therapy · Tallinn",
-    heroTitle: "Relief your body will remember.",
+    heroTitle: "Relief that lasts long after the session.",
     heroSub:
-      "Therapeutic bodywork that releases tension, restores mobility, and quiets a busy nervous system — in a calm, clinical room.",
+      "Individual body therapy that releases muscle tension, restores freedom of movement, and helps your body recover naturally.",
     ctaBook: "Book a session",
     ctaServices: "Browse treatments",
     trust: "Trusted by clients across Tallinn",
@@ -151,26 +151,26 @@ const SALES: Record<Lang, Copy> = {
     outcomesIntro:
       "Every session targets the result you came for — not a generic routine. Pick by what your body needs, not by what's on a menu.",
     outcomes: [
-      "Back & neck without pain",
-      "Faster recovery after sport",
-      "Less swelling, better flow",
-      "Skin that looks rested",
+      "Pain-Free Back",
+      "Effective Recovery After Exercise",
+      "Reduction of Swelling and Improved Lymph Flow",
+      "Freshness and Skin Tone of the Face",
     ],
     outcomeDesc: [
-      "Targeted release of long-standing tension in the spine and shoulders.",
-      "Muscle elasticity restored, lactic acid flushed, less next-day soreness.",
-      "Manual lymph drainage that wakes circulation and lightens heavy legs.",
-      "Gentle facial work that lifts, smooths and brightens in one session.",
+      "Targeted body therapy designed to relieve chronic tension and strain in the back, neck, and shoulder area.",
+      "Therapy helps relax muscles, improve flexibility, and reduce fatigue after intense training sessions, supporting faster and more efficient recovery.",
+      "Gentle lymphatic drainage techniques aimed at stimulating blood and lymph circulation help reduce fluid retention and relieve the feeling of heaviness in the legs.",
+      "Gentle facial work for a light lifting effect, improved skin tone, and a natural radiant glow.",
     ],
     whyTitle: "Why clients come back",
     why: [
       {
-        title: "Tailored to your body, each visit",
-        text: "No fixed protocol. Every session reads where you actually are today — pressure, focus and length adjust to you.",
+        title: "Individual Approach",
+        text: "No standard protocols or one-size-fits-all solutions. Each session is adapted to your current condition: pressure level, sensitivity, focus areas, and comfortable treatment duration.",
       },
       {
-        title: "Calm, medical-grade space",
-        text: "Sessions take place inside Pelgulinna Tervisemaja and a dedicated room in Lasnamäe — quiet, clean, properly equipped.",
+        title: "Recovery space",
+        text: "Procedures take place in a quiet medical room at Pelgulinna Tervisemaja. The room at Linnamäe 37a is designed for comfort, relaxation, and a sense of safety.",
       },
       {
         title: "Pay how you want",
@@ -210,9 +210,9 @@ const SALES: Record<Lang, Copy> = {
       where: "Адрес",
     },
     heroEyebrow: "Массажная терапия · Таллинн",
-    heroTitle: "Облегчение, которое тело запомнит.",
+    heroTitle: "Облегчение, которое чувствуется ещё долго после сеанса.",
     heroSub:
-      "Терапевтический массаж: снимаем напряжение, возвращаем подвижность и успокаиваем уставшую нервную систему — в тихом кабинете.",
+      "Индивидуальная терапия тела: снимаем мышечное напряжение, возвращаем свободу движения и помогаем организму восстановиться естественно.",
     ctaBook: "Записаться",
     ctaServices: "Смотреть процедуры",
     trust: "Уже доверяют клиенты по всему Таллинну",
@@ -221,26 +221,26 @@ const SALES: Record<Lang, Copy> = {
     outcomesIntro:
       "Каждый сеанс ведёт к результату, за которым вы пришли — а не к одинаковому набору движений. Выбирайте по запросу тела, а не по меню.",
     outcomes: [
-      "Спина и шея без боли",
-      "Быстрее восстановиться после спорта",
-      "Меньше отёков, лучше лимфоток",
-      "Отдохнувшая кожа лица",
+      "Спина без боли",
+      "Эффективное восстановление после спорта",
+      "Снижение отёчности и улучшение лимфотока",
+      "Свежесть и тонус лица",
     ],
     outcomeDesc: [
-      "Точечная работа с давним напряжением в спине и плечах.",
-      "Эластичность мышц, вывод молочной кислоты, меньше крепатуры на следующий день.",
-      "Мягкий лимфодренаж, который будит циркуляцию и облегчает ноги.",
-      "Деликатная работа с лицом: тонус, лёгкий лифтинг и свежесть за один сеанс.",
+      "Индивидуальная работа с хроническим напряжением и дискомфортом в области спины, шеи и плечевого пояса.",
+      "Терапия способствует расслаблению мышц, улучшению их эластичности и снижению чувства усталости после интенсивных тренировок.",
+      "Мягкие техники лимфодренажа, направленные на стимуляцию крово- и лимфообращения, помогают уменьшить застой жидкости и ощущение тяжести в ногах.",
+      "Деликатная работа с лицом для лёгкого лифтинга, улучшения тонуса и естественного сияния кожи.",
     ],
     whyTitle: "Почему сюда возвращаются",
     why: [
       {
-        title: "Подбор под ваше состояние",
-        text: "Никаких жёстких протоколов. Каждый сеанс настраивается под вас — давление, фокус и продолжительность.",
+        title: "Индивидуальный подход",
+        text: "Без стандартных протоколов и универсальных решений. Каждая сессия адаптируется под ваше текущее состояние: уровень давления, чувствительность, зоны внимания и комфортную длительность процедуры.",
       },
       {
-        title: "Спокойный медицинский кабинет",
-        text: "Сеансы проходят в Pelgulinna Tervisemaja и в отдельном кабинете в Lasnamäe — тихо, чисто, всё оборудовано.",
+        title: "Пространство для восстановления",
+        text: "Процедуры проходят в тихом и медицинском кабинете в Pelgulinna Tervisemaja. Кабинет на Linnamäe 37a создан для комфорта, расслабления и ощущения безопасности.",
       },
       {
         title: "Удобная оплата",
@@ -280,9 +280,9 @@ const SALES: Record<Lang, Copy> = {
       where: "Asukoht",
     },
     heroEyebrow: "Massaažiteraapia · Tallinn",
-    heroTitle: "Kergus, mille keha mäletab.",
+    heroTitle: "Kergendus, mida tunned veel kaua pärast seanssi.",
     heroSub:
-      "Teraapiline kehatöö, mis vabastab pinge, taastab liikuvuse ja rahustab närvisüsteemi — vaikses ja puhtas ruumis.",
+      "Individuaalne kehateraapia, mis vabastab lihaspingeid, taastab liikumisvabaduse ja aitab kehal loomulikul viisil taastuda.",
     ctaBook: "Broneeri seanss",
     ctaServices: "Vaata teenuseid",
     trust: "Usaldatud klientide poolt üle Tallinna",
@@ -291,26 +291,26 @@ const SALES: Record<Lang, Copy> = {
     outcomesIntro:
       "Iga seanss viib tulemuseni, mille pärast tulid — mitte standardne rutiin. Vali selle järgi, mida sinu keha vajab.",
     outcomes: [
-      "Selg ja kael valuvabaks",
-      "Kiirem taastumine pärast sporti",
-      "Vähem turseid, parem lümfivool",
-      "Puhanud näonahk",
+      "Valuvaba selg",
+      "Tõhus taastumine pärast sporti",
+      "Turse vähendamine ja lümfivoolu parandamine",
+      "Näo värskus ja toon",
     ],
     outcomeDesc: [
-      "Sihipärane töö pikaajalise pingega selgroos ja õlgades.",
-      "Lihaste elastsus taastatud, piimhape välja, vähem järgmise päeva valu.",
-      "Õrn lümfidrenaaž, mis äratab vereringe ja kergendab raskeid jalgu.",
-      "Õrn näotöö, mis tõstab, siludab ja särab juba ühe seansiga.",
+      "Sihtotstarbeline kehateraapia kroonilise pinge ja ülekoormuse leevendamiseks selja-, kaela- ja õlavöötme piirkonnas.",
+      "Teraapia aitab lõõgastada lihaseid, parandada nende elastsust ning vähendada väsimustunnet pärast intensiivseid treeninguid, toetades kiiremat ja tõhusamat taastumist.",
+      "Õrnad lümfidrenaaži tehnikad, mis stimuleerivad vere- ja lümfiringet, aitavad vähendada vedelikupeetust ning leevendada raskustunnet jalgades.",
+      "Õrn näohooldus kerge tõstva efekti saavutamiseks, naha toonuse parandamiseks ja loomuliku sära taastamiseks.",
     ],
     whyTitle: "Miks kliendid tagasi tulevad",
     why: [
       {
-        title: "Kohandatud sinu kehale",
-        text: "Pole jäika protokolli. Iga seanss kohaneb sinu hetkeseisundiga — surve, fookus ja pikkus.",
+        title: "Individuaalne lähenemine",
+        text: "Ilma standardsete protokollide ja universaalsete lahendusteta. Iga seanss kohandatakse vastavalt sinu hetke seisundile: surve tugevus, tundlikkus, fookuspiirkonnad ning mugav protseduuri kestus.",
       },
       {
-        title: "Rahulik meditsiiniline ruum",
-        text: "Seansid toimuvad Pelgulinna Tervisemajas ja eraldi ruumis Lasnamäel — vaikne, puhas, hästi varustatud.",
+        title: "Taastumisruum",
+        text: "Protseduurid toimuvad vaikses ja meditsiinilises kabinetis Pelgulinna Tervisemaja juures. Linnamäe 37a kabinet on loodud mugavuse, lõõgastuse ja turvatunde jaoks.",
       },
       {
         title: "Mugavad maksevõimalused",
