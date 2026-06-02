@@ -140,7 +140,7 @@ const SALES: Record<Lang, Copy> = {
       pricing: "Pricing",
       where: "Location",
     },
-    heroEyebrow: "Massage therapy · Tallinn",
+    heroEyebrow: "Therapeutic massage in Tallinn",
     heroTitle: "Relief that lasts long after the session.",
     heroSub:
       "Individual body therapy that releases muscle tension, restores freedom of movement, and helps your body recover naturally.",
@@ -210,7 +210,7 @@ const SALES: Record<Lang, Copy> = {
       pricing: "Цены",
       where: "Адрес",
     },
-    heroEyebrow: "Массажная терапия · Таллинн",
+    heroEyebrow: "Терапевтический массаж в Таллинне",
     heroTitle: "Облегчение, которое чувствуется ещё долго после сеанса.",
     heroSub:
       "Индивидуальная терапия тела: снимаем мышечное напряжение, возвращаем свободу движения и помогаем организму восстановиться естественно.",
@@ -280,7 +280,7 @@ const SALES: Record<Lang, Copy> = {
       pricing: "Hinnad",
       where: "Asukoht",
     },
-    heroEyebrow: "Massaažiteraapia · Tallinn",
+    heroEyebrow: "Teraapiline massaaž Tallinnas",
     heroTitle: "Kergendus, mida tunned veel kaua pärast seanssi.",
     heroSub:
       "Individuaalne kehateraapia, mis vabastab lihaspingeid, taastab liikumisvabaduse ja aitab kehal loomulikul viisil taastuda.",
@@ -479,7 +479,8 @@ function Hero({ s, popupUrl }: { s: Copy; popupUrl: string }) {
         muted
         loop
         playsInline
-        preload="auto"
+        preload="metadata"
+        poster="/video-bg-poster.jpg"
         aria-hidden
       >
         <source src="/video-bg.mp4" type="video/mp4" />
@@ -584,6 +585,7 @@ function Outcomes({ s }: { s: Copy }) {
               muted
               loop
               playsInline
+              preload="metadata"
               poster="/welcome1.jpg"
             >
               <source src="/vid.mp4" type="video/mp4" />
@@ -1089,6 +1091,8 @@ function FinalCta({ s, popupUrl }: { s: Copy; popupUrl: string }) {
         muted
         loop
         playsInline
+        preload="metadata"
+        poster="/video-bg-poster.jpg"
         aria-hidden
       >
         <source src="/video-bg.mp4" type="video/mp4" />

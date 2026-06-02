@@ -26,15 +26,15 @@ export const OG_LOCALE: Record<Lang, string> = {
 };
 
 export const PAGE_TITLES: Record<Lang, string> = {
-  et: "SomaSensus — Yana Belova · Massaaž Tallinnas",
-  ru: "SomaSensus — Яна Белова · Массаж в Таллинне",
-  en: "SomaSensus — Yana Belova · Massage in Tallinn",
+  et: "Massaaž Tallinnas — SomaSensus · Yana Belova",
+  ru: "Массаж в Таллинне — SomaSensus · Яна Белова",
+  en: "Massage in Tallinn — SomaSensus · Yana Belova",
 };
 
 export const PAGE_DESCRIPTIONS: Record<Lang, string> = {
-  et: "Teraapiline massaaž Tallinnas — vabasta pinge, taasta liikuvus. Pelgulinna Tervisemaja ja Lasnamäe. Esimene visiit −10%.",
-  ru: "Терапевтический массаж в Таллинне — снимаем напряжение, возвращаем подвижность. Pelgulinna Tervisemaja и Lasnamäe. Первый визит −10%.",
-  en: "Therapeutic massage in Tallinn — release tension, restore mobility. Pelgulinna Tervisemaja & Lasnamäe. First visit −10%.",
+  et: "Teraapiline massaaž Tallinnas — vabasta pinge ja taasta liikuvus. Pelgulinna Tervisemaja ja Lasnamäe kabinet. Broneeri online, esimene visiit −10%.",
+  ru: "Терапевтический массаж в Таллинне — снимем напряжение, вернём подвижность. Кабинеты Pelgulinna Tervisemaja и Lasnamäe. Записаться онлайн, первый визит −10%.",
+  en: "Therapeutic massage in Tallinn — release tension and restore mobility. Pelgulinna Tervisemaja & Lasnamäe. Book online, first visit −10%.",
 };
 
 export const SERVICE_IMG: Record<number, string> = {
