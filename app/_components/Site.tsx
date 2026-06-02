@@ -45,8 +45,21 @@ function buildCalendlyUrl(lang: Lang, embed: boolean): string {
   return `${meta.booking_calendly}?${params.toString()}`;
 }
 
+// Calendly's stylesheet is loaded on demand (not render-blocking in <head>),
+// so we inject it the first time a booking widget actually needs it.
+function ensureCalendlyCss() {
+  if (typeof document === "undefined") return;
+  if (document.getElementById("calendly-css")) return;
+  const link = document.createElement("link");
+  link.id = "calendly-css";
+  link.rel = "stylesheet";
+  link.href = "https://assets.calendly.com/assets/external/widget.css";
+  document.head.appendChild(link);
+}
+
 function openCalendly(url: string) {
   if (typeof window === "undefined") return;
+  ensureCalendlyCss();
   if (window.Calendly?.initPopupWidget) {
     window.Calendly.initPopupWidget({ url });
   } else {
@@ -61,6 +74,7 @@ function CalendlyInline({ url }: { url: string }) {
     const el = ref.current;
     if (!el) return;
     let cancelled = false;
+    ensureCalendlyCss();
 
     const mount = () => {
       const Cal = window.Calendly;
@@ -483,6 +497,7 @@ function Hero({ s, popupUrl }: { s: Copy; popupUrl: string }) {
         poster="/video-bg-poster.jpg"
         aria-hidden
       >
+        <source src="/video-bg.webm" type="video/webm" />
         <source src="/video-bg.mp4" type="video/mp4" />
       </video>
       <div
@@ -1095,6 +1110,7 @@ function FinalCta({ s, popupUrl }: { s: Copy; popupUrl: string }) {
         poster="/video-bg-poster.jpg"
         aria-hidden
       >
+        <source src="/video-bg.webm" type="video/webm" />
         <source src="/video-bg.mp4" type="video/mp4" />
       </video>
       <div

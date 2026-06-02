@@ -193,14 +193,12 @@ export default async function RootLayout({
       className={`${inter.variable} ${cormorant.variable} antialiased`}
     >
       <head>
-        <link rel="preconnect" href="https://assets.calendly.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://calendly.com" crossOrigin="anonymous" />
+        {/* Calendly is loaded lazily (only when booking is needed), so we keep
+            these as lightweight DNS hints instead of eager preconnects/blocking CSS. */}
+        <link rel="dns-prefetch" href="https://assets.calendly.com" />
+        <link rel="dns-prefetch" href="https://calendly.com" />
         <link rel="dns-prefetch" href="https://basemaps.cartocdn.com" />
         <link rel="dns-prefetch" href="https://www.google.com" />
-        <link
-          rel="stylesheet"
-          href="https://assets.calendly.com/assets/external/widget.css"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(buildJsonLd(lang)) }}
@@ -251,7 +249,7 @@ export default async function RootLayout({
         </Script>
         <Script
           src="https://assets.calendly.com/assets/external/widget.js"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
       </body>
     </html>
