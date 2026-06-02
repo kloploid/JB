@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Cormorant_Garamond } from "next/font/google";
 import Script from "next/script";
 import { notFound } from "next/navigation";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/next";
 import CookieConsent from "../_components/CookieConsent";
 import AnalyticsTracker from "../_components/AnalyticsTracker";
 import {
@@ -207,6 +209,8 @@ export default async function RootLayout({
       <body className="min-h-dvh bg-background text-ink">
         {children}
         <AnalyticsTracker />
+        <Analytics />
+        <SpeedInsights />
         <CookieConsent lang={lang} />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-32CZVTX59C"
