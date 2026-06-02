@@ -37,6 +37,7 @@ export const PAGE_DESCRIPTIONS: Record<Lang, string> = {
   en: "Therapeutic massage in Tallinn — release tension and restore mobility. Pelgulinna Tervisemaja & Lasnamäe. Book online, first visit −10%.",
 };
 
+// Single source of truth for service images (keyed by service id).
 export const SERVICE_IMG: Record<number, string> = {
   1: "/service1.jpg",
   2: "/service3.jpg",

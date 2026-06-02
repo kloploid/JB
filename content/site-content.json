@@ -776,14 +776,6 @@
     "maps": {
       "pelgulinna": "https://maps.google.com/?q=Pelgulinna%20Tervisemaja%2C%20Tallinn",
       "linnamae37a": "https://maps.google.com/?q=Linnam%C3%A4e+37a%2C+Lasnam%C3%A4e%2C+Tallinn"
-    },
-    "service_images": {
-      "1": "/service1.jpg",
-      "2": "/service3.jpg",
-      "3": "/service2.jpg",
-      "4": "/service4.jpg",
-      "5": "/service4.jpg",
-      "6": "/service5.jpg"
     }
   }
 }
