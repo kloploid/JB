@@ -18,10 +18,15 @@ import {
 } from "@/content/site-content";
 import "../globals.css";
 
+// preload:false — we ship 3 subsets (latin/latin-ext/cyrillic) for the
+// trilingual site; preloading them all wastes bandwidth on the critical path
+// (only one subset is used per locale). The browser fetches the needed subset
+// on demand via unicode-range, and display:swap keeps text visible meanwhile.
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin", "latin-ext", "cyrillic"],
   display: "swap",
+  preload: false,
 });
 
 const cormorant = Cormorant_Garamond({
@@ -29,6 +34,7 @@ const cormorant = Cormorant_Garamond({
   subsets: ["latin", "latin-ext", "cyrillic"],
   weight: ["300", "400", "500"],
   display: "swap",
+  preload: false,
 });
 
 const siteUrl =
