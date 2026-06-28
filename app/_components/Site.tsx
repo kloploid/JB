@@ -360,6 +360,9 @@ const SALES: Record<Lang, Copy> = {
 
 const FEATURED_ID = 2;
 
+// Service ids temporarily hidden from the services section (data kept in JSON).
+const HIDDEN_SERVICE_IDS = new Set<number>([6]); // 6 = facial massage
+
 const OUTCOME_IMG = [
   "/service2.jpg",
   "/service3.jpg",
@@ -699,7 +702,9 @@ function Services({
         </h2>
 
         <ul className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {t.offers.items.map((item) => {
+          {t.offers.items
+            .filter((item) => !HIDDEN_SERVICE_IDS.has(item.id))
+            .map((item) => {
             const isFeatured = item.id === FEATURED_ID;
             const min = lowestPrice(item.price);
             return (
