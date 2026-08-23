@@ -134,7 +134,7 @@ function buildJsonLd(locale: Lang) {
     image: `${siteUrl}/opengraph-image`,
     url: `${siteUrl}/${locale}`,
     email: "yanabelova.physio@gmail.com",
-    priceRange: "€40 – €65",
+    priceRange: "€45 – €70",
     inLanguage: ["et", "ru", "en"],
     address: [
       {

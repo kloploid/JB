@@ -67,7 +67,7 @@
         "priceList": [
           {
             "name": "Classic massage",
-            "price": "45m 40€ | 60m 45€ | 90m 55€"
+            "price": "45m 45€ | 60m 55€ | 90m 60€"
           },
           {
             "name": "Sports massage",
@@ -75,11 +75,15 @@
           },
           {
             "name": "Therapeutic massage",
-            "price": "45m 45€ | 60m 50€ | 90m 60€"
+            "price": "45m 50€ | 60m 55€ | 90m 60€"
+          },
+          {
+            "name": "Trigger-Point Massage",
+            "price": "45m 55€ | 60m 60€ | 90m 70€"
           },
           {
             "name": "Manual lymphatic drainage massage",
-            "price": "45m 50€ | 60m 55€ | 90m 65€"
+            "price": "45m 50€ | 60m 60€ | 90m 65€"
           },
           {
             "name": "Facial massage",
@@ -111,7 +115,7 @@
           {
             "id": 1,
             "name": "Classic massage",
-            "price": "45m 40€ | 60m 45€ | 90m 55€",
+            "price": "45m 45€ | 60m 55€ | 90m 60€",
             "icon": "",
             "color": "purple",
             "desc": "Relaxes muscles and improves overall well-being.",
@@ -125,7 +129,7 @@
           {
             "id": 2,
             "name": "Therapeutic massage",
-            "price": "45m 45€ | 60m 50€ | 90m 60€",
+            "price": "45m 50€ | 60m 55€ | 90m 60€",
             "icon": "",
             "color": "purple",
             "desc": "Aimed at recovery and treatment of problem areas of the body.",
@@ -153,7 +157,7 @@
           {
             "id": 4,
             "name": "Trigger-Point Massage",
-            "price": "50/60€",
+            "price": "45m 55€ | 60m 60€ | 90m 70€",
             "icon": "",
             "color": "green",
             "desc": "Focuses on releasing tight knots within the muscles.",
@@ -167,7 +171,7 @@
           {
             "id": 5,
             "name": "Lymphatic drainage massage",
-            "price": "45m 50€ | 60m 55€ | 90m 65€",
+            "price": "45m 50€ | 60m 60€ | 90m 65€",
             "icon": "",
             "color": "green",
             "desc": "Stimulates lymph flow and reduces swelling.",
@@ -322,7 +326,7 @@
         "priceList": [
           {
             "name": "Классический массаж",
-            "price": "45м 40€ | 60м 45€ | 90м 55€"
+            "price": "45м 45€ | 60м 55€ | 90м 60€"
           },
           {
             "name": "Спортивный массаж",
@@ -330,11 +334,15 @@
           },
           {
             "name": "Терапевтический массаж",
-            "price": "45м 45€ | 60м 50€ | 90м 60€"
+            "price": "45м 50€ | 60м 55€ | 90м 60€"
+          },
+          {
+            "name": "Триггерный массаж",
+            "price": "45м 55€ | 60м 60€ | 90м 70€"
           },
           {
             "name": "Лимфодренажный массаж",
-            "price": "45м 50€ | 60м 55€ | 90м 65€"
+            "price": "45м 50€ | 60м 60€ | 90м 65€"
           },
           {
             "name": "Массаж лица",
@@ -366,7 +374,7 @@
           {
             "id": 1,
             "name": "Классический массаж",
-            "price": "45м 40€ | 60м 45€ | 90м 55€",
+            "price": "45м 45€ | 60м 55€ | 90м 60€",
             "icon": "",
             "color": "purple",
             "desc": "Расслабляет мышцы и улучшает общее самочувствие.",
@@ -380,7 +388,7 @@
           {
             "id": 2,
             "name": "Терапевтический массаж",
-            "price": "45м 45€ | 60м 50€ | 90м 60€",
+            "price": "45м 50€ | 60м 55€ | 90м 60€",
             "icon": "",
             "color": "purple",
             "desc": "Направлен на восстановление и лечение проблемных зон тела.",
@@ -408,7 +416,7 @@
           {
             "id": 4,
             "name": "Триггерный массаж",
-            "price": "50/60€",
+            "price": "45м 55€ | 60м 60€ | 90м 70€",
             "icon": "",
             "color": "green",
             "desc": "Устранение мышечных узлов и зажимов через точечное давление.",
@@ -422,7 +430,7 @@
           {
             "id": 5,
             "name": "Лимфодренажный массаж",
-            "price": "45м 50€ | 60м 55€ | 90м 65€",
+            "price": "45м 50€ | 60м 60€ | 90м 65€",
             "icon": "",
             "color": "green",
             "desc": "Стимулирует лимфоток и снижает отечность.",
@@ -577,7 +585,7 @@
         "priceList": [
           {
             "name": "Klassikaline massaaž",
-            "price": "45m 40€ | 60m 45€ | 90m 55€"
+            "price": "45m 45€ | 60m 55€ | 90m 60€"
           },
           {
             "name": "Spordimassaaž",
@@ -585,11 +593,15 @@
           },
           {
             "name": "Terapeutiline (raviv) massaaž",
-            "price": "45m 45€ | 60m 50€ | 90m 60€"
+            "price": "45m 50€ | 60m 55€ | 90m 60€"
+          },
+          {
+            "name": "Trigerpunktide massaaž",
+            "price": "45m 55€ | 60m 60€ | 90m 70€"
           },
           {
             "name": "Lümfidrenaažimassaaž (käsitsi)",
-            "price": "45m 50€ | 60m 55€ | 90m 65€"
+            "price": "45m 50€ | 60m 60€ | 90m 65€"
           },
           {
             "name": "Näomassaaž",
@@ -621,7 +633,7 @@
           {
             "id": 1,
             "name": "Klassikaline massaaž",
-            "price": "45m 40€ | 60m 45€ | 90m 55€",
+            "price": "45m 45€ | 60m 55€ | 90m 60€",
             "icon": "",
             "color": "purple",
             "desc": "Lõdvestab lihaseid ja parandab üldist enesetunnet.",
@@ -635,7 +647,7 @@
           {
             "id": 2,
             "name": "Terapeutiline massaaž",
-            "price": "45m 45€ | 60m 50€ | 90m 60€",
+            "price": "45m 50€ | 60m 55€ | 90m 60€",
             "icon": " ",
             "color": "purple",
             "desc": "Suunatud probleemsete kehapiirkondade taastamisele ja ravile.",
@@ -663,7 +675,7 @@
           {
             "id": 4,
             "name": "Trigerpunktide massaaž",
-            "price": "50/60€",
+            "price": "45m 55€ | 60m 60€ | 90m 70€",
             "icon": "",
             "color": "green",
             "desc": "Keskendub lihasknottide vabastamisele kontrollitud surve abil.",
@@ -677,7 +689,7 @@
           {
             "id": 5,
             "name": "Lümfidrenaažimassaaž",
-            "price": "45m 50€ | 60m 55€ | 90m 65€",
+            "price": "45m 50€ | 60m 60€ | 90m 65€",
             "icon": "",
             "color": "green",
             "desc": "Stimuleerib lümfivoolu ja vähendab turseid.",
