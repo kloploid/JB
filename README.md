@@ -13,7 +13,7 @@ Trilingual marketing site for **Yana Belova** — massage therapist and manual-t
 - **SEO-first** — per-locale metadata, canonical + `hreflang` alternates, `sitemap.xml`, `robots.txt`, a dynamic OpenGraph image and `MassageTherapy` JSON-LD (addresses, geo, opening hours, reviews).
 - **Interactive locations map** — Leaflet map with CARTO basemaps marking both treatment rooms.
 - **Online booking** — Calendly widget, loaded lazily so it never blocks the critical path.
-- **Privacy-aware analytics** — Vercel Analytics & Speed Insights, Google Analytics and Microsoft Clarity, all gated behind a Google Consent Mode v2 cookie banner (default: denied).
+- **Privacy-aware analytics** — Google Analytics runs under Google Consent Mode v2 (default: denied); Microsoft Clarity ignores Consent Mode, so its tag is injected only once the visitor accepts the cookie banner, and revoked via `clarity('consent', false)` if they later decline. Vercel Analytics & Speed Insights are cookieless. No cookies are set before a choice is made.
 - **Performance-minded** — AVIF/WebP images, hero background video (`webm` + `mp4`), on-demand font subsets (latin / latin-ext / cyrillic via `unicode-range`) and DNS-prefetch hints for third parties.
 
 ## Tech stack
@@ -44,6 +44,8 @@ app/
     CookieConsent.tsx      # Consent banner (Consent Mode v2)
     AnalyticsTracker.tsx   # Page-view tracking
   opengraph-image.tsx      # Dynamic OG image
+  global-not-found.tsx     # 404 for unmatched URLs (root layout is under [lang])
+  fonts.ts                 # Shared next/font instances
   sitemap.ts · robots.ts · manifest.ts · icon
 content/
   site-content.json        # Single source of truth for all copy

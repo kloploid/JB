@@ -32,9 +32,9 @@ export const PAGE_TITLES: Record<Lang, string> = {
 };
 
 export const PAGE_DESCRIPTIONS: Record<Lang, string> = {
-  et: "Teraapiline massaaž Tallinnas — vabasta pinge ja taasta liikuvus. Pelgulinna Tervisemaja ja Lasnamäe kabinet. Broneeri online, esimene visiit −10%.",
-  ru: "Терапевтический массаж в Таллинне — снимем напряжение, вернём подвижность. Кабинеты Pelgulinna Tervisemaja и Lasnamäe. Записаться онлайн, первый визит −10%.",
-  en: "Therapeutic massage in Tallinn — release tension and restore mobility. Pelgulinna Tervisemaja & Lasnamäe. Book online, first visit −10%.",
+  et: "Massaaž Tallinnas — vabasta pinge ja taasta liikuvus. Pelgulinna Tervisemaja ja Lasnamäe kabinet. Broneeri online, esimene visiit −10%.",
+  ru: "Массаж в Таллинне — снимем напряжение, вернём подвижность. Кабинеты Pelgulinna Tervisemaja и Lasnamäe. Записаться онлайн, первый визит −10%.",
+  en: "Massage in Tallinn — release tension and restore mobility. Pelgulinna Tervisemaja & Lasnamäe. Book online, first visit −10%.",
 };
 
 // Single source of truth for service images (keyed by service id).

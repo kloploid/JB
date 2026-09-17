@@ -1,11 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Cormorant_Garamond } from "next/font/google";
 import Script from "next/script";
 import { notFound } from "next/navigation";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/next";
 import CookieConsent from "../_components/CookieConsent";
 import AnalyticsTracker from "../_components/AnalyticsTracker";
+import Clarity from "../_components/Clarity";
 import {
   LOCALES,
   DEFAULT_LOCALE,
@@ -16,26 +16,8 @@ import {
   languages,
   type Lang,
 } from "@/content/site-content";
+import { inter, cormorant } from "../fonts";
 import "../globals.css";
-
-// preload:false — we ship 3 subsets (latin/latin-ext/cyrillic) for the
-// trilingual site; preloading them all wastes bandwidth on the critical path
-// (only one subset is used per locale). The browser fetches the needed subset
-// on demand via unicode-range, and display:swap keeps text visible meanwhile.
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin", "latin-ext", "cyrillic"],
-  display: "swap",
-  preload: false,
-});
-
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
-  subsets: ["latin", "latin-ext", "cyrillic"],
-  weight: ["300", "400", "500"],
-  display: "swap",
-  preload: false,
-});
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.somasensus.ee";
@@ -71,7 +53,7 @@ export async function generateMetadata({
     publisher: "SomaSensus",
     keywords: [
       "massaaž Tallinn",
-      "teraapiline massaaž",
+      "süvakoeline massaaž",
       "spordimassaaž",
       "lümfidrenaaž",
       "näomassaaž",
@@ -216,6 +198,7 @@ export default async function RootLayout({
         <Analytics />
         <SpeedInsights />
         <CookieConsent lang={lang} />
+        <Clarity />
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-32CZVTX59C"
           strategy="afterInteractive"
@@ -242,15 +225,6 @@ export default async function RootLayout({
               });
             }
             gtag('config', 'G-32CZVTX59C', { send_page_view: false });
-          `}
-        </Script>
-        <Script id="ms-clarity" strategy="afterInteractive">
-          {`
-            (function(c,l,a,r,i,t,y){
-                c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-                t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-                y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-            })(window, document, "clarity", "script", "x0b558huwn");
           `}
         </Script>
         <Script

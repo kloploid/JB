@@ -4,7 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "SomaSensus — Yana Belova",
     short_name: "SomaSensus",
-    description: "Teraapiline massaaž Tallinnas",
+    description: "Massaaž Tallinnas",
     start_url: "/",
     display: "standalone",
     background_color: "#fcfaf6",

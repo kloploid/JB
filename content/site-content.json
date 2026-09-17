@@ -25,7 +25,7 @@
         "serviceListTitle": "Techniques and treatments",
         "serviceList": [
           "Classic Swedish massage",
-          "Deep tissue / Therapeutic massage",
+          "Deep tissue massage",
           "Trigger point therapy",
           "Sports massage",
           "Myofascial release",
@@ -74,7 +74,7 @@
             "price": "45m 50€ | 60m 55€ | 90m 65€"
           },
           {
-            "name": "Therapeutic massage",
+            "name": "Deep tissue massage",
             "price": "45m 50€ | 60m 55€ | 90m 60€"
           },
           {
@@ -128,11 +128,11 @@
           },
           {
             "id": 2,
-            "name": "Therapeutic massage",
+            "name": "Deep tissue massage",
             "price": "45m 50€ | 60m 55€ | 90m 60€",
             "icon": "",
             "color": "purple",
-            "desc": "Aimed at recovery and treatment of problem areas of the body.",
+            "desc": "Deep work through the lower muscle layers and connective tissue to release chronic tension.",
             "benefits": [
               "Pain relief",
               "Improved posture",
@@ -284,7 +284,7 @@
         "serviceListTitle": "Техники и услуги",
         "serviceList": [
           "Классический шведский массаж",
-          "Глубокотканный / Терапевтический массаж",
+          "Глубокотканный массаж",
           "Терапия триггерных точек",
           "Спортивный массаж",
           "Миофасциальный релиз",
@@ -333,7 +333,7 @@
             "price": "45м 50€ | 60м 55€ | 90м 65€"
           },
           {
-            "name": "Терапевтический массаж",
+            "name": "Глубокотканный массаж",
             "price": "45м 50€ | 60м 55€ | 90м 60€"
           },
           {
@@ -387,11 +387,11 @@
           },
           {
             "id": 2,
-            "name": "Терапевтический массаж",
+            "name": "Глубокотканный массаж",
             "price": "45м 50€ | 60м 55€ | 90м 60€",
             "icon": "",
             "color": "purple",
-            "desc": "Направлен на восстановление и лечение проблемных зон тела.",
+            "desc": "Глубокая работа с нижними слоями мышц и соединительной тканью для снятия хронического напряжения.",
             "benefits": [
               "Снятие боли",
               "Осанка",
@@ -543,7 +543,7 @@
         "serviceListTitle": "Tehnikad ja teenused",
         "serviceList": [
           "Rootsi klassikaline massaaž",
-          "Süvakoemassaaž / Terapeudiline massaaž",
+          "Süvakoeline massaaž",
           "Trigerpunktide teraapia",
           "Spordimassaaž",
           "Müofastsiaalne vabastamine",
@@ -592,7 +592,7 @@
             "price": "45m 50€ | 60m 55€ | 90m 65€"
           },
           {
-            "name": "Terapeutiline (raviv) massaaž",
+            "name": "Süvakoeline massaaž",
             "price": "45m 50€ | 60m 55€ | 90m 60€"
           },
           {
@@ -646,11 +646,11 @@
           },
           {
             "id": 2,
-            "name": "Terapeutiline massaaž",
+            "name": "Süvakoeline massaaž",
             "price": "45m 50€ | 60m 55€ | 90m 60€",
             "icon": " ",
             "color": "purple",
-            "desc": "Suunatud probleemsete kehapiirkondade taastamisele ja ravile.",
+            "desc": "Sügav töö lihaste alumiste kihtide ja sidekoega, et vabastada krooniline pinge.",
             "benefits": [
               "Valu leevendamine",
               "Rüht",

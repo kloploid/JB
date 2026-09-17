@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { Lang } from "@/content/site-content";
+import { readConsent, writeConsent } from "./consent";
 
 declare global {
   interface Window {
@@ -46,11 +47,7 @@ export default function CookieConsent({ lang }: { lang: Lang }) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    let consent: string | null = null;
-    try {
-      consent = localStorage.getItem("cookie-consent");
-    } catch {}
-    if (consent !== "granted" && consent !== "denied") {
+    if (readConsent() === null) {
       // Client-only gate: localStorage is unavailable during SSR, so the banner
       // is intentionally shown after mount to avoid a hydration mismatch.
       // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -59,9 +56,8 @@ export default function CookieConsent({ lang }: { lang: Lang }) {
   }, []);
 
   const decide = (granted: boolean) => {
-    try {
-      localStorage.setItem("cookie-consent", granted ? "granted" : "denied");
-    } catch {}
+    // Persists the choice and notifies consent-gated scripts (e.g. Clarity).
+    writeConsent(granted);
     window.gtag?.("consent", "update", {
       ad_storage: granted ? "granted" : "denied",
       ad_user_data: granted ? "granted" : "denied",

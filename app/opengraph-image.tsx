@@ -43,7 +43,7 @@ export default function OpengraphImage() {
               background: "#6e8c71",
             }}
           />
-          Massaažiteraapia · Tallinn
+          Massaaž · Tallinn
         </div>
         <div
           style={{
